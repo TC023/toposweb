@@ -200,6 +200,17 @@ ul#time-slots li:hover {
   #select-button:hover {
     background-color: #1e7e34; /* Slightly darker green on hover */
   }
+  .calendar2 {
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  div {
+    border: 2px solid black; /* This sets a 2px solid black border */
+}
+td{
+    border: 2px solid blue; /* This sets a 2px solid black border */
+}
 </style>
 <script>
   let originalFontSize = 16; // Set your original font size here
@@ -263,52 +274,18 @@ ul#time-slots li:hover {
     <h2>Seleccione la fecha de su evento</h2>
     <div class="calendar">
   <!-- Day headers -->
+  <div class="day-header">Dom</div>
   <div class="day-header">Lun</div>
   <div class="day-header">Mar</div>
   <div class="day-header">Mié</div>
   <div class="day-header">Jue</div>
   <div class="day-header">Vie</div>
   <div class="day-header">Sáb</div>
-  <div class="day-header">Dom</div>
-  
-  <!-- Empty days to adjust the start of the month -->
-  <div class="empty-day"></div> <!-- Adjust these empty days as needed -->
-  <div class="empty-day"></div>
-  <!-- ... -->
-  
-  <!-- Days -->
-  <div class="day">1</div>
-  <div class="day">2</div>
-  <div class="day">3</div>
-  <div class="day">4</div>
-  <div class="day">5</div>
-  <div class="day">6</div>
-  <div class="day">7</div>
-  <div class="day">8</div>
-  <div class="day">9</div>
-  <div class="day">10</div>
-  <div class="day">11</div>
-  <div class="day">12</div>
-  <div class="day">13</div>
-  <div class="day">14</div>
-  <div class="day">15</div>
-  <div class="day">16</div>
-  <div class="day">17</div>
-  <div class="day">18</div>
-  <div class="day">19</div>
-  <div class="day">20</div>
-  <div class="day">21</div>
-  <div class="day">22</div>
-  <div class="day">23</div>
-  <div class="day">24</div>
-  <div class="day">25</div>
-  <div class="day">26</div>
-  <div class="day">27</div>
-  <div class="day">28</div>
-  <div class="day">29</div>
-  <div class="day">30</div>
-  <div class="day">31</div>
 </div>
+
+<div class="calendar2"></div>
+<script src="script.js"></script>
+
   </div>
   <div class="time-slots-section">
     <h3>Horarios disponibles VIERNES 1 de ABRIL</h3>
@@ -335,6 +312,7 @@ ul#time-slots li:hover {
     </ul>
   </div>
   </div>
+
 </div>
 <footer>
   <button id="select-button">Seleccionar</button>
