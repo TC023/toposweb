@@ -141,7 +141,8 @@
   padding: 0.4px;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-gap: 10px;
+  grid-gap: 1px;
+  border: 2px solid blue; /* This sets a 2px solid black border */
 }
 
 .day {
@@ -157,11 +158,16 @@
 }
 
 .day-header {
-  padding-left: 20px;
+  text-align: center;
   border-radius: 4px;
   background-color: #f8f9fa; /* Light gray background for day headers */
   color: black;
+  font-weight: 400;
+  font-size: 15px;
+  padding-bottom: 5px;
 }
+
+
 
 .empty-day {
   background-color: transparent;
@@ -201,16 +207,11 @@ ul#time-slots li:hover {
     background-color: #1e7e34; /* Slightly darker green on hover */
   }
   .calendar2 {
-    width: 300px;
-    margin: 0 auto;
+    width: auto;
+    border: 2px solid black; /* This sets a 2px solid black border */
   }
 
-  div {
-    border: 2px solid black; /* This sets a 2px solid black border */
-}
-td{
-    border: 2px solid blue; /* This sets a 2px solid black border */
-}
+
 </style>
 <script>
   let originalFontSize = 16; // Set your original font size here
@@ -272,19 +273,9 @@ td{
 </div>
   <div class="calendar-section">
     <h2>Seleccione la fecha de su evento</h2>
-    <div class="calendar">
-  <!-- Day headers -->
-  <div class="day-header">Dom</div>
-  <div class="day-header">Lun</div>
-  <div class="day-header">Mar</div>
-  <div class="day-header">Mié</div>
-  <div class="day-header">Jue</div>
-  <div class="day-header">Vie</div>
-  <div class="day-header">Sáb</div>
-</div>
 
-<div class="calendar2"></div>
-<script src="script.js"></script>
+    <div class="calendar2"></div>
+    <script src="script.js"></script>
 
   </div>
   <div class="time-slots-section">
