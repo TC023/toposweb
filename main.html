@@ -209,7 +209,6 @@ ul#time-slots {
 }
 
 ul#time-slots li {
-  background-color: #f8f9fa; /* Light gray background for time slots */
   padding: 10px;
   margin-bottom: 10px;
   cursor: pointer;
@@ -219,23 +218,26 @@ ul#time-slots li {
 ul#time-slots li:hover {
   background-color: #e9ecef; /* Slightly darker gray on hover */
 }
+#select-button {
+  margin-left: 70px;
+  background-color: black; /* Darker green for the select button */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#select-button:hover {
+  background-color: #454545; /* Slightly darker gray on hover */
+}
+
   footer {
-    text-align: center;
-    padding: 20px;
+    text-align: left;
+    padding: 2px;
     background-color: #28a745; /* Adjust the color to match your design */
   }
-  #select-button {
-    background-color: #218838; /* Darker green for the select button */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  #select-button:hover {
-    background-color: #1e7e34; /* Slightly darker green on hover */
-  }
+  
   .calendar2 {
     width: auto;
   }
@@ -302,7 +304,7 @@ ul#time-slots li:hover {
       <li>19:00</li>
       <li>20:00</li>
       <li>21:00</li>
-      
+      <button id="select-button">Seleccionar</button>
       <!-- ... -->
     </ul>
   </div>
@@ -310,7 +312,7 @@ ul#time-slots li:hover {
 
 </div>
 <footer>
-  <button id="select-button">Seleccionar</button>
+  <p>Topos F.C. Madriguera</p>
 </footer>
 <script src="calendar_script.js"></script>
 <script src="biggertext_script.js"></script>

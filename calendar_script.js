@@ -6,6 +6,39 @@ const nextBtn = document.createElement('button');
 nextBtn.textContent = 'Next';
 let selectedDate = null;
 
+// Function to color the hour slots for a specific date
+function colorPendingSlotsForDate(date, pendingReservations) {
+  const timeSlots = document.querySelectorAll('#time-slots li');
+  timeSlots.forEach(slot => {
+    // Clear any previous coloring
+    slot.style.backgroundColor = '';
+    
+    const slotHour = slot.textContent;
+    if (isPendingReservationForDate(date, slotHour, pendingReservations)) {
+      slot.style.backgroundColor = 'orange';
+    }
+  });
+}
+
+// Function to check if a reservation exists for the given date and hour
+function isPendingReservationForDate(date, hour, pendingReservations) {
+  // Ensure the date is in the format "YYYY-MM-DD"
+  const selectedDate = new Date(date + 'T00:00:00'); // Add 'T00:00:00' to ensure correct parsing
+
+  return pendingReservations.some(reservation => {
+    const reservationDate = new Date(reservation);
+    const reservationHour = reservationDate.getHours().toString().padStart(2, '0');
+    const reservationMinutes = reservationDate.getMinutes().toString().padStart(2, '0');
+    const reservationTime = reservationHour + ':' + reservationMinutes;
+
+    return (
+      reservationDate.getFullYear() === selectedDate.getFullYear() &&
+      reservationDate.getMonth() === selectedDate.getMonth() &&
+      reservationDate.getDate() === selectedDate.getDate() &&
+      reservationTime === hour
+    );
+  });
+}
 
 let currentYear;
 let currentMonth;
@@ -55,6 +88,18 @@ function sendInfo(dia, mes, diaSemana){
     title.innerHTML = "Horarios para el:<br>" + diaToStr[diaSemana] + " " + dia + " de " + mesToStr[mes];
     selectedDate = dateString;
   }
+
+  // Convert dia and mes to 2-digit strings
+  const formattedDay = dia.toString().padStart(2, '0');
+  const formattedMonth = (mes + 1).toString().padStart(2, '0'); // JavaScript months are 0-indexed
+
+  // Construct the full date string in the format "YYYY-MM-DD"
+  const fullDateString = `${currentYear}-${formattedMonth}-${formattedDay}`;
+
+  // Call colorPendingSlotsForDate with the selected date
+  fetchPendingReservations().then(pendingReservations => {
+    colorPendingSlotsForDate(fullDateString, pendingReservations);
+  });
 }
 
 
@@ -157,4 +202,19 @@ nextBtn.addEventListener('click', () => {
     currentYear++;
   }
   createCalendar(currentYear, currentMonth);
+
 });
+// Fetch pending reservations from the server and store them
+let pendingReservationsGlobal = [];
+function fetchPendingReservations() {
+  return fetch('test.php')
+    .then(response => response.json())
+    .then(pendingReservations => {
+      pendingReservationsGlobal = pendingReservations;
+      return pendingReservations; // Return the reservations for further processing
+    })
+    .catch(error => console.error('Error fetching pending reservations:', error));
+}
+
+// Initially fetch the pending reservations
+fetchPendingReservations()
