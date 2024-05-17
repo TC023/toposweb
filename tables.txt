@@ -1,3 +1,9 @@
 CREATE TABLE reto_reservaciones (
-    id_reserva INT NOT NULL PRIMARY KEY,
+    `id_reserva` int(11) NOT NULL,
+  `nombre` varchar(20) DEFAULT NULL,
+  `num` varchar(20) DEFAULT NULL,
+  `fecha_hora` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `duracion` INT DEFAULT NULL,
+  `correo` varchar(10) DEFAULT NULL,
+  `estado` varchar(10) DEFAULT NULL,
 )
