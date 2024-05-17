@@ -4,254 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Topos FC - Página Oficial</title>
-<style>
-  /* Styles for the navigation and logo section */
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-image: url('https://th.bing.com/th/id/OIP.qPbqurQoCAZH5xdx_R4OtQHaE7?rs=1&pid=ImgDetMain');
-    background-size: cover;
-    background-attachment: fixed;
-    background-color: rgba(0, 0, 0, 0.7);
-    background-blend-mode: overlay;
-  }
-  .navbar {
-    display: flex;
-    justify-content: space-around;
-    padding: 1em;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    background-color: transparent;
-    z-index: 10;
-  }
-  .navbar a, .navbar button {
-    color: white;
-    text-decoration: none;
-    background: none;
-    border: none;
-    font-size: 1em;
-    cursor: pointer;
-  }
-  .logo {
-    text-align: center;
-    color: white;
-    padding-top: 50px;
-  }
-  .background {
-    background-size: cover;
-    background-blend-mode: darken;
-    position: relative;
-    height: 100vh;
-  }
-  /* Styles for the field rental section with image */
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
-  .title {
-    font-size: 2em;
-    color: white;
-    width: 80%;
-    text-align: left;
-    margin-bottom: 20px;
-  }
-  .content {
-    display: flex;
-    width: 80%;
-    background-color: rgba(0,0,0,0.0);
-    padding: 20px;
-    border-radius: 10px;
-  }
-  .left-column {
-    flex: 1;
-    padding-right: 20px;
-  }
-  .left-column img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
-  .right-column {
-    flex: 1;
-    color: white;
-    padding-left: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .data-text {
-    background-color: white;
-    border-radius: 15px;
-    padding: 20px;
-    margin-top: 20px;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .data-text ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .data-text li {
-    font-size: 1em;
-    line-height: 1.5;
-    color: #333;
-  }
-  .calendarcontainer {
-    justify-content: center;
-    width: 70%;
-    background-color: white;
-    border-radius: 35px;
-    display: flex;
-    flex-direction: row; /* Align items horizontally */
-    padding: 40px;
-    align-items: flex-start; /* Align items to the top */
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .contentcalendar {
-    display: flex;
-  }
-  .calendarheader {
-    flex: 1;
-    margin-right: 20px; /* Add space between the title and the calendar */
-  }
-  .calendar-section {
-    flex: 1;
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-  }
-  @keyframes slideIn {
-    from {
-      transform: translateX(-100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-  @keyframes slideOut {
-    from {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    to {
-      transform: translateX(-100%);
-      opacity: 0;
-    }
-  }
-  
-  .time-slots-section {
-    flex: 1;
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-left: 20px;
-    visibility: hidden;
-    z-index: 0;
-  }
-
-  .visible {
-    visibility: visible;
-  animation: slideIn 0.5s forwards; /* Apply the animation */
-}
-.ovisible {
-  visibility: visible;
-animation: slideOut 0.5s forwards; /* Apply the animation */
-}
-  .calendar {
-  padding: 0.4px;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-gap: 1px;
-}
-
-.day {
-  padding: 20px;
-  border-radius: 360px;
-  background-color: gray; /* Light gray background for days */
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.day:hover {
-  background-color: #e9ecef; /* Slightly darker gray on hover */
-}
-
-.day-header {
-  text-align: center;
-  border-radius: 4px;
-  background-color: #f8f9fa; /* Light gray background for day headers */
-  color: black;
-  font-weight: 400;
-  font-size: 15px;
-  padding-bottom: 5px;
-}
-
-.empty-day {
-  background-color: transparent;
-}
-
-ul#time-slots {
-  list-style-type: none;
-  padding: 0;
-}
-
-ul#time-slots li {
-  border-radius: 14px;
-  padding: 10px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-ul#time-slots li:hover {
-  background-color: #e9ecef; /* Slightly darker gray on hover */
-}
-#select-button {
-  margin-left: 70px;
-  background-color: black; /* Darker green for the select button */
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-#select-button:hover {
-  background-color: #454545; /* Slightly darker gray on hover */
-}
-
-  footer {
-    text-align: left;
-    padding: 2px;
-    background-color: #28a745; /* Adjust the color to match your design */
-  }
-  
-  .calendar2 {
-    width: auto;
-  }
-
-
-</style>
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 <div class="navbar">
   <a href="#">INICIO</a>
-  <a href="#">TORNEOS</a>
-  <a href="#">ESTADÍSTICAS</a>
-  <a href="#">CONTACTO</a>
+  <a href="#">EQUIPOS & TORNEOS</a>
+  <a href="#">EVENTOS & FOTOS</a>
   <a href="#">INICIAR SESIÓN</a>
   <button onclick="toggleFontSize()">AGRANDAR TEXTO</button>
 </div>
@@ -313,10 +72,22 @@ ul#time-slots li:hover {
   </div>
 
 </div>
+<!-- Steps Bar Container -->
+<div class="steps-bar-container">
+  <div class="step-circle completed"><span class="checkmark">✓</span></div>
+  <div class="step-line"></div>
+  <div class="step-circle"></div>
+  <div class="step-line"></div>
+  <div class="step-circle"></div>
+  <div class="step-line"></div>
+  <div class="step-circle"></div>
+</div>
 <footer>
   <p>Topos F.C. Madriguera</p>
 </footer>
 <script src="calendar_script.js"></script>
 <script src="biggertext_script.js"></script>
+<script src="hours_script.js"></script>
+<script src="stepst_script.js"></script>
 </body>
 </html>
