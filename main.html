@@ -130,6 +130,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   .time-slots-section {
+    display: none;
     flex: 1;
     background-color: white;
     padding: 20px;
@@ -142,7 +143,6 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-gap: 1px;
-  border: 2px solid blue; /* This sets a 2px solid black border */
 }
 
 .day {
@@ -208,7 +208,6 @@ ul#time-slots li:hover {
   }
   .calendar2 {
     width: auto;
-    border: 2px solid black; /* This sets a 2px solid black border */
   }
 
 
@@ -279,7 +278,7 @@ ul#time-slots li:hover {
 
   </div>
   <div class="time-slots-section">
-    <h3>Horarios disponibles VIERNES 1 de ABRIL</h3>
+    <h3 id = 'diaselect'></h3>
     <ul id="time-slots">
       <!-- Time slots go here -->
       <li>09:00</li>

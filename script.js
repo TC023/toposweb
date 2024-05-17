@@ -10,6 +10,41 @@ nextBtn.textContent = 'Next';
 let currentYear;
 let currentMonth;
 
+function sendInfo(dia, mes, diaSemana){
+
+  let diaToStr = {
+    0: 'Domingo',
+    1: 'Lunes',
+    2: 'Martes',
+    3: 'Miércoles',
+    4: 'Jueves',
+    5: 'Viernes',
+    6: 'Sábado',
+  };
+
+  let mesToStr = {
+    0: 'Enero',
+    1: 'Febrero',
+    2: 'Marzo',
+    3: 'Abril',
+    4: 'Mayo',
+    5: 'Junio',
+    6: 'Julio',
+    7: 'Agosto',
+    8: 'Septiembre',
+    9: 'Octubre',
+    10: 'Noviembre',
+    11: 'Diciembre'
+};
+
+  const horas = document.querySelector('.time-slots-section');
+  horas.style.display = "block";
+  const title = document.getElementById('diaselect');
+  title.innerHTML = "HORARIOS PARA EL:<br>" + diaToStr[diaSemana] + " " + dia + " de " + mesToStr[mes];
+    // Horarios disponibles VIERNES 1 de ABRIL
+
+}
+
 
 const ayuda = document.createElement('div');
 ayuda.classList.add('calendar');
@@ -76,7 +111,10 @@ function createCalendar(year, month) {
     } else {
         cell.className = "day"
         cell.textContent = date;
+        cell.setAttribute('id', 'feo'+date)
+        cell.setAttribute('onclick', "sendInfo(" + date + ", " + currentMonth + ", " + j + ")");
         date++;
+
       }
       row.appendChild(cell);
     }
