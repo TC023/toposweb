@@ -42,14 +42,16 @@ function sendInfo(dia, mes, diaSemana){
   // Create a date string for comparison
   const dateString = `${dia}-${mes}-${currentYear}`;
   // Check if the selected date is the same as the previously selected date
+  // Check if the selected date is the same as the previously selected date
   if (selectedDate === dateString) {
-    // If the same date is clicked, toggle the display and clear the selected date
-    horas.style.display = horas.style.display === "block" ? "none" : "block";
-    title.innerHTML = horas.style.display === "block" ? "Horarios para el:<br>" + diaToStr[diaSemana] + " " + dia + " de " + mesToStr[mes] : "Horarios para el:";
-    selectedDate = horas.style.display === "block" ? dateString : null;
+    // If the same date is clicked, toggle the visibility class and clear the selected date
+    horas.classList.toggle('ovisible');
+    title.innerHTML = horas.classList.contains('visible') ? "Horarios para el:<br>" + diaToStr[diaSemana] + " " + dia + " de " + mesToStr[mes] : "Horarios para el:";
+    selectedDate = horas.classList.contains('visible') ? dateString : null;
   } else {
     // If a different date is clicked, show the hours and update the selected date
-    horas.style.display = "block";
+    horas.classList.remove('ovisible');
+    horas.classList.add('visible');
     title.innerHTML = "Horarios para el:<br>" + diaToStr[diaSemana] + " " + dia + " de " + mesToStr[mes];
     selectedDate = dateString;
   }
@@ -119,12 +121,15 @@ function createCalendar(year, month) {
         // No more days in the month
         break;
     } else {
-        cell.className = "day"
-        cell.textContent = date;
-        cell.setAttribute('id', 'feo'+date)
-        cell.setAttribute('onclick', "sendInfo(" + date + ", " + currentMonth + ", " + j + ")");
-        date++;
-
+      cell.className = "day";
+      cell.textContent = date;
+      // Use an IIFE to correctly bind the current date value
+      (function(currentDate, currentMonth, currentDayOfWeek) {
+        cell.addEventListener('click', function() {
+          sendInfo(currentDate, currentMonth, currentDayOfWeek);
+        });
+      })(date, currentMonth, j);
+      date++;
       }
       row.appendChild(cell);
     }

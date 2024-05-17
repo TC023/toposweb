@@ -128,16 +128,48 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1;
   }
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
+  
   .time-slots-section {
-    display: none;
     flex: 1;
     background-color: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin-left: 20px;
+    visibility: hidden;
+    z-index: 0;
   }
+
+  .visible {
+    visibility: visible;
+  animation: slideIn 0.5s forwards; /* Apply the animation */
+}
+.ovisible {
+  visibility: visible;
+animation: slideOut 0.5s forwards; /* Apply the animation */
+}
   .calendar {
   padding: 0.4px;
   display: grid;
@@ -166,8 +198,6 @@
   font-size: 15px;
   padding-bottom: 5px;
 }
-
-
 
 .empty-day {
   background-color: transparent;
