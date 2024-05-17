@@ -212,22 +212,6 @@ ul#time-slots li:hover {
 
 
 </style>
-<script>
-  let originalFontSize = 16; // Set your original font size here
-
-  function toggleFontSize() {
-    const body = document.querySelector('body');
-    const currentFontSize = parseFloat(window.getComputedStyle(body).fontSize);
-
-    if (currentFontSize === originalFontSize) {
-      // Increase font size
-      body.style.fontSize = '20px'; // Adjust as needed
-    } else {
-      // Restore original font size
-      body.style.fontSize = originalFontSize + 'px';
-    }
-  }
-</script>
 </head>
 <body>
 <div class="navbar">
@@ -272,10 +256,7 @@ ul#time-slots li:hover {
 </div>
   <div class="calendar-section">
     <h2>Seleccione la fecha de su evento</h2>
-
     <div class="calendar2"></div>
-    <script src="script.js"></script>
-
   </div>
   <div class="time-slots-section">
     <h3 id = 'diaselect'></h3>
@@ -307,5 +288,7 @@ ul#time-slots li:hover {
 <footer>
   <button id="select-button">Seleccionar</button>
 </footer>
+<script src="calendar_script.js"></script>
+<script src="biggertext_script.js"></script>
 </body>
 </html>

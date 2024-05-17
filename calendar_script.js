@@ -40,7 +40,7 @@ function sendInfo(dia, mes, diaSemana){
   const horas = document.querySelector('.time-slots-section');
   horas.style.display = "block";
   const title = document.getElementById('diaselect');
-  title.innerHTML = "HORARIOS PARA EL:<br>" + diaToStr[diaSemana] + " " + dia + " de " + mesToStr[mes];
+  title.innerHTML = "Horarios para el:<br>" + diaToStr[diaSemana] + " " + dia + " de " + mesToStr[mes];
     // Horarios disponibles VIERNES 1 de ABRIL
 
 }
