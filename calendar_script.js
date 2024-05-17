@@ -4,7 +4,7 @@ const prevBtn = document.createElement('button');
 prevBtn.textContent = 'Prev';
 const nextBtn = document.createElement('button');
 nextBtn.textContent = 'Next';
-
+let selectedDate = null;
 
 
 let currentYear;
@@ -38,11 +38,21 @@ function sendInfo(dia, mes, diaSemana){
 };
 
   const horas = document.querySelector('.time-slots-section');
-  horas.style.display = "block";
   const title = document.getElementById('diaselect');
-  title.innerHTML = "Horarios para el:<br>" + diaToStr[diaSemana] + " " + dia + " de " + mesToStr[mes];
-    // Horarios disponibles VIERNES 1 de ABRIL
-
+  // Create a date string for comparison
+  const dateString = `${dia}-${mes}-${currentYear}`;
+  // Check if the selected date is the same as the previously selected date
+  if (selectedDate === dateString) {
+    // If the same date is clicked, toggle the display and clear the selected date
+    horas.style.display = horas.style.display === "block" ? "none" : "block";
+    title.innerHTML = horas.style.display === "block" ? "Horarios para el:<br>" + diaToStr[diaSemana] + " " + dia + " de " + mesToStr[mes] : "Horarios para el:";
+    selectedDate = horas.style.display === "block" ? dateString : null;
+  } else {
+    // If a different date is clicked, show the hours and update the selected date
+    horas.style.display = "block";
+    title.innerHTML = "Horarios para el:<br>" + diaToStr[diaSemana] + " " + dia + " de " + mesToStr[mes];
+    selectedDate = dateString;
+  }
 }
 
 
