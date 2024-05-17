@@ -4,19 +4,19 @@ $pdo = Database::connect();
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 // Fetch reservations with 'pendiente' status
-$pendienteSql = "SELECT fecha_hora FROM reto_reservaciones WHERE estado = 'pendiente'";
+$pendienteSql = "SELECT reto_horas.fechas_seleccionadas FROM reto_horas JOIN reto_reservaciones ON reto_horas.id_reserva = reto_reservaciones.id_reserva WHERE reto_reservaciones.estado = 1";
 $pendienteResult = $pdo->query($pendienteSql);
 $pendingReservations = [];
 foreach ($pendienteResult as $row) {
-    $pendingReservations[] = $row["fecha_hora"];
+    $pendingReservations[] = $row["fechas_seleccionadas"];
 }
 
 // Fetch reservations with 'ocupado' status
-$ocupadoSql = "SELECT fecha_hora FROM reto_reservaciones WHERE estado = 'ocupado'";
+$ocupadoSql = "SELECT reto_horas.fechas_seleccionadas FROM reto_horas JOIN reto_reservaciones ON reto_horas.id_reserva = reto_reservaciones.id_reserva WHERE reto_reservaciones.estado = 2";
 $ocupadoResult = $pdo->query($ocupadoSql);
 $ocupadoReservations = [];
 foreach ($ocupadoResult as $row) {
-    $ocupadoReservations[] = $row["fecha_hora"];
+    $ocupadoReservations[] = $row["fechas_seleccionadas"];
 }
 
 Database::disconnect();
