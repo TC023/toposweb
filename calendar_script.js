@@ -7,25 +7,26 @@ nextBtn.textContent = 'Next';
 let selectedDate = null;
 
 // Function to color the hour slots for a specific date
-function colorPendingSlotsForDate(date, pendingReservations) {
+function colorSlotsForDate(date, pendienteReservations, ocupadoReservations) {
   const timeSlots = document.querySelectorAll('#time-slots li');
   timeSlots.forEach(slot => {
     // Clear any previous coloring
     slot.style.backgroundColor = '';
     
     const slotHour = slot.textContent;
-    if (isPendingReservationForDate(date, slotHour, pendingReservations)) {
-      slot.style.backgroundColor = 'orange';
+    if (isReservationForDate(date, slotHour, pendienteReservations)) {
+      slot.style.backgroundColor = '#ff9769';
+    } else if (isReservationForDate(date, slotHour, ocupadoReservations)) {
+      slot.style.backgroundColor = '#fd6060';
     }
   });
 }
 
 // Function to check if a reservation exists for the given date and hour
-function isPendingReservationForDate(date, hour, pendingReservations) {
-  // Ensure the date is in the format "YYYY-MM-DD"
+function isReservationForDate(date, hour, reservations) {
   const selectedDate = new Date(date + 'T00:00:00'); // Add 'T00:00:00' to ensure correct parsing
 
-  return pendingReservations.some(reservation => {
+  return reservations.some(reservation => {
     const reservationDate = new Date(reservation);
     const reservationHour = reservationDate.getHours().toString().padStart(2, '0');
     const reservationMinutes = reservationDate.getMinutes().toString().padStart(2, '0');
@@ -39,6 +40,7 @@ function isPendingReservationForDate(date, hour, pendingReservations) {
     );
   });
 }
+
 
 let currentYear;
 let currentMonth;
@@ -96,9 +98,9 @@ function sendInfo(dia, mes, diaSemana){
   // Construct the full date string in the format "YYYY-MM-DD"
   const fullDateString = `${currentYear}-${formattedMonth}-${formattedDay}`;
 
-  // Call colorPendingSlotsForDate with the selected date
-  fetchPendingReservations().then(pendingReservations => {
-    colorPendingSlotsForDate(fullDateString, pendingReservations);
+  // Call colorSlotsForDate with the selected date
+  fetchReservations().then(reservations => {
+    colorSlotsForDate(fullDateString, reservationsGlobal.pendiente, reservationsGlobal.ocupado);
   });
 }
 
@@ -204,17 +206,22 @@ nextBtn.addEventListener('click', () => {
   createCalendar(currentYear, currentMonth);
 
 });
-// Fetch pending reservations from the server and store them
-let pendingReservationsGlobal = [];
-function fetchPendingReservations() {
-  return fetch('test.php')
+// Fetch reservations from the server and store them
+let reservationsGlobal = {
+  pendiente: [],
+  ocupado: []
+};
+
+function fetchReservations() {
+  return fetch('reservations.php')
     .then(response => response.json())
-    .then(pendingReservations => {
-      pendingReservationsGlobal = pendingReservations;
-      return pendingReservations; // Return the reservations for further processing
+    .then(reservations => {
+      reservationsGlobal.pendiente = reservations.pendiente;
+      reservationsGlobal.ocupado = reservations.ocupado;
+      return reservations; // Return the reservations for further processing
     })
-    .catch(error => console.error('Error fetching pending reservations:', error));
+    .catch(error => console.error('Error fetching reservations:', error));
 }
 
-// Initially fetch the pending reservations
-fetchPendingReservations()
+// Initially fetch the reservations
+fetchReservations();
