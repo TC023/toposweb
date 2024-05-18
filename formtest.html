@@ -5,73 +5,81 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Formulario de Reserva</title>
 <style>
-  body {
-    font-family: 'Arial', sans-serif;
-    background-color: #e7e7e7;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
-  .form-container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 350px; /* Ajustado para centrar */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #e7e7e7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-size: 18px; /* Tamaño de fuente aumentado para todo el formulario */
+      }
+      .form-container {
+        background-color: #fff;
+        padding: 30px; /* Aumento del relleno para hacer el formulario más grande */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 500px; /* Ancho aumentado para hacer el formulario más grande */
+        height: 389px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
   .checkmark-icon {
+    margin-top: 40px;
     display: block;
     text-align: center;
     margin-bottom: 4px;
   }
   .checkmark-icon img {
-    width: 45px;
+    width: 60px; /* Aumento del tamaño de la imagen del icono de verificación */
     height: auto;
   }
-  .form-header {
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  .form-field {
+
+.form-header {
+    font-size: 1.3em;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px; /* Aumento del margen para hacer el título más grande */
+}
+.form-field {
     display: flex;
+    align-items: center; /* Asegura alineación vertical */
     width: 100%;
     margin-bottom: 10px;
-    align-items: center; /* Alineación vertical */
   }
   .form-field label {
     color: #333;
+    margin-left: 10px;
     margin-right: 5px;
-    font-size: 0.8em;
+    font-size: 0.9em;
     text-align: right;
-    flex-basis: 35%; /* Ajustado para alinear */
-    font-weight: bold; /* Etiquetas en negrita */
+    flex-basis: 35%; /* Ajusta el ancho de la etiqueta */
+    font-weight: bold;
   }
   .form-field input {
     background-color: #e9ecef;
-    width: 40%; /* Ancho ajustado para acortar el campo de entrada */
+    width: 39%; /* Ajusta el ancho del campo de entrada */
     padding: 8px;
     border: none;
     border-radius: 13px;
-    margin-right: 20px; /* Margen a la derecha */
+    margin-right: auto; /* Empuja el campo de entrada hacia la etiqueta */
   }
-  #select-button {
+
+  #next-button {
+    font-size: 0.95em;
     background-color: black;
     color: white;
-    padding: 10px 20px;
+    padding: 15px 1px; /* Aumento del relleno para el botón */
     border: none;
-    border-radius: 2px;
+    border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-top: 20px;
-    width: 80%;
+    margin-top: 30px; /* Aumento del margen superior para el botón */
+    width: 40%;
   }
-  #select-button:hover {
+  #next-button:hover {
     background-color: #454545;
   }
 </style>
@@ -96,7 +104,7 @@
       <label for="email">Correo:</label>
       <input type="email" id="email" name="email">
     </div>
-    <button id="select-button">Siguiente</button>
+    <button id="next-button">Siguiente</button>
   </div>
 </body>
 </html>
