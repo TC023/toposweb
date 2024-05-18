@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulario de Reserva</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e7e7e7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 350px; /* Ajustado para centrar */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .checkmark-icon {
+    display: block;
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .checkmark-icon img {
+    width: 45px;
+    height: auto;
+  }
+  .form-header {
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .form-field {
+    display: flex;
+    width: 100%;
+    margin-bottom: 10px;
+    align-items: center; /* Alineación vertical */
+  }
+  .form-field label {
+    color: #333;
+    margin-right: 5px;
+    font-size: 0.8em;
+    text-align: right;
+    flex-basis: 35%; /* Ajustado para alinear */
+    font-weight: bold; /* Etiquetas en negrita */
+  }
+  .form-field input {
+    background-color: #e9ecef;
+    flex-grow: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 13px;
+    margin-right: 20px; /* Margen a la derecha */
+  }
+  #select-button {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+    width: 80%;
+  }
+  #select-button:hover {
+    background-color: #454545;
+  }
+</style>
+</head>
+<body>
+  <div class="form-container">
+    <div class="checkmark-icon">
+      <img src="https://www.pngitem.com/pimgs/m/111-1116836_check-mark-logo-transparent-transparent-quality-check-icon.png" alt="Checkmark">
+    </div>
+    <div class="form-header">
+      Datos del responsable de la reserva
+    </div>
+    <div class="form-field">
+      <label for="name">Nombre:</label>
+      <input type="text" id="name" name="name">
+    </div>
+    <div class="form-field">
+      <label for="phone">Teléfono:</label>
+      <input type="tel" id="phone" name="phone">
+    </div>
+    <div class="form-field">
+      <label for="email">Correo:</label>
+      <input type="email" id="email" name="email">
+    </div>
+    <button id="select-button">Siguiente</button>
+  </div>
+</body>
+</html>
