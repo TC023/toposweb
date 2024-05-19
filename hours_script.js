@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
             slot.classList.remove('selected');
             slot.style.backgroundColor = ''; // Set back to the default color
           } else {
-            messageDiv.classList.toggle('ovisible');
+            messageDiv.classList.add('ovisible');
             slot.classList.add('selected');
             slot.style.backgroundColor = '#5fc175'; // Set to green when selected
           }
