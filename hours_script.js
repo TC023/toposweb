@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Force reflow/repaint for the animation to restart
         void messageDiv.offsetWidth;
         messageDiv.classList.add('visible');
-        messageElement.textContent = 'Hora pendiente de revisión, tal vez se libere en otro momento';
+        messageElement.textContent = 'Hora pendiente de revisión, tal vez se libere en otro momento.';
           
         } else if (isRed) {
           // Remove 'visible' class and add it back to restart the animation
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Force reflow/repaint for the animation to restart
         void messageDiv.offsetWidth;
         messageDiv.classList.add('visible');
-    messageElement.textContent = 'Hora ocupada';
+    messageElement.textContent = 'Hora ocupada.';
         } else {
           
           // Toggle the 'selected' class and change the background color accordingly

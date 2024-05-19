@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Topos FC - Página Oficial</title>
@@ -78,10 +79,10 @@
   </div>
 </div>
 <!-- Form section to display-->
-<div class="form-section">
-<form class="form-container" style="display: none;">
+<div class="form-section" style="display: none;">
+<form class="form-container">
   <div class="checkmark-icon">
-    <img src="https://www.pngitem.com/pimgs/m/111-1116836_check-mark-logo-transparent-transparent-quality-check-icon.png" alt="Checkmark">
+    <img src="https://i.imgur.com/7qPMdhy.png" alt="Checkmark">
   </div>
   <div class="form-header">
     Datos del responsable de la reserva
@@ -98,18 +99,45 @@
     <label for="email">Correo:</label>
     <input type="email" id="email" name="email">
   </div>
-  <button id="next-button">Siguiente</button>
+  <a id="next-button">Siguiente</a>
 </form>
 </div>
+<!-- Data confirm | Step 3 -->
+<div class="contenedor-step3" style="display: none;">
+  <img class="icono-step3" src="https://i.imgur.com/7qPMdhy.png">
+  <h2 class="titulo-step3">Tu reservación está siendo procesada</h2>
+  <p class="texto-step3">Porfavor corrobora tu información antes de continuar</p>
+  <div class="contenedor-info-step3">
+    <div class="izquierda-step3">
+      <p><b>Nombre:</b> Fernanda Hernández<br><b>Teléfono:</b> 2294531171<br>
+        <b>Correo:</b> fer_hdz@gmail.com
+      </p>
+    </div>
+    <div class="derecha-step3">
+      <p><b>Horas seleccionadas:</b><br> 10:00 - 11:00<br>
+        14:00 - 16:00</p>
+    </div>
+  </div>
+  <button id="button-step3">Siguiente</button>
+</div>
+
+<!-- Step 4 idk the name -->
+<div class="contenedor-step4" style="display: none;">
+  <img class="icono-step4" src="https://i.imgur.com/7qPMdhy.png">
+<h2 class="titulo-step4">En breve un administrador se comunicará contigo para realizar el pago de la reserva</h2>
+<p class="texto-step4">En caso de dudas comunicarse al siguiente correo:<br> dudasreservaciones@gmail.com</p>
+<button id="boton-step4">Siguiente</button>
+</div>
+
 <!-- Steps Bar Container -->
 <div class="steps-bar-container">
   <div class="step-circle step-circle-1"><span class="checkmark">✓</span></div>
   <div class="step step-0"></div>
-  <div class="step-circle step-circle-2"></div>
+  <div class="step-circle step-circle-2"><span class="checkmark">✓</span></div>
   <div class="step step-1"></div>
-  <div class="step-circle step-circle-3"></div>
+  <div class="step-circle step-circle-3"><span class="checkmark">✓</span></div>
   <div class="step step-2"></div>
-  <div class="step-circle step-circle-4"></div>
+  <div class="step-circle step-circle-4"><span class="checkmark">✓</span></div>
 </div>
 <footer class="foot">
   <div class="g1">

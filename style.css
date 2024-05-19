@@ -185,7 +185,7 @@ body {
   }
   .time-slots-section {
     flex: 1;
-    height: 500px;
+    height: 520px;
     width: 90px;
     background-color: white;
     padding: 10px;
@@ -273,7 +273,7 @@ ul#time-slots li:hover {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-.select-button:hover {
+#select-button:hover {
   background-color: #454545; /* Slightly darker gray on hover */
 }
 /* Footer CSS */
@@ -429,8 +429,10 @@ ul#time-slots li:hover {
 }
 
 /* Form styles */
+.form-section {
+  margin-bottom: 100px;
+}
 .form-container {
-    font-size: 20px;
     margin-top: 3%;
 margin-left: 32%;
   background-color: #fff;
@@ -444,10 +446,11 @@ margin-left: 32%;
   align-items: center;
 }
 .checkmark-icon {
-margin-top: 40px;
+margin-top: 1px;
 display: block;
 text-align: center;
 margin-bottom: 4px;
+margin-left: 1.5%;
 }
 .checkmark-icon img {
 width: 60px; /* Aumento del tamaño de la imagen del icono de verificación */
@@ -455,7 +458,7 @@ height: auto;
 }
 
 .form-header {
-font-size: 1.3em;
+font-size: 24px;
 font-weight: 700;
 text-align: center;
 margin-bottom: 20px; /* Aumento del margen para hacer el título más grande */
@@ -470,7 +473,7 @@ margin-bottom: 10px;
 color: #333;
 margin-left: 10px;
 margin-right: 5px;
-font-size: 0.9em;
+font-size: 18px;
 text-align: right;
 flex-basis: 35%; /* Ajusta el ancho de la etiqueta */
 font-weight: bold;
@@ -484,18 +487,122 @@ border-radius: 13px;
 margin-right: auto; /* Empuja el campo de entrada hacia la etiqueta */
 }
 
+/* The mf next button */
 #next-button {
-font-size: 0.95em;
-background-color: black;
-color: white;
-padding: 15px 1px; /* Aumento del relleno para el botón */
-border: none;
-border-radius: 4px;
-cursor: pointer;
-transition: background-color 0.3s;
-margin-top: 30px; /* Aumento del margen superior para el botón */
-width: 40%;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 24px;
+  cursor: pointer;
+  margin-top: 30px;
 }
 #next-button:hover {
 background-color: #454545;
+}
+
+/* Data confirm (or step3) css */
+.icono-step3 {
+  width: 50px;
+  height: 50px;
+}
+
+.contenedor-step3 {
+  width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.titulo-step3 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.texto-step3 {
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+.contenedor-info-step3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.izquierda-step3 {
+  padding-left: 65px;
+  flex: 1;
+  text-align: justify;
+}
+
+.derecha-step3 {
+  flex: 1;
+  text-align: justify;
+}
+
+#button-step3 {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 12px 24px;
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+#button-step3:hover {
+  background-color: #333;
+}
+
+/* Step 4 css */
+.icono-step4 {
+  width: 50px;
+  height: 50px;
+}
+
+.contenedor-step4 {
+  width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.titulo-step4 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.texto-step4 {
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+#boton-step4 {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 12px 24px;
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+#boton-step4:hover {
+  background-color: #333;
 }
