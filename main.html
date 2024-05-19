@@ -14,9 +14,12 @@
   <a href="#">INICIAR SESIÓN</a>
   <button onclick="toggleFontSize()">AGRANDAR TEXTO</button>
 </div>
+<div class="contenido">
 <div class="background privacy">
+  <a href="https://toposfc.org/">
+    <img class="logo1" src="logo.png" alt="Logo de Topos FC">
+  </a>
   <div class="logo">
-    <img src="https://toposfc.org/wp-content/uploads/2023/06/logo-topos-fc-2023-1-copia-copia-1.png" alt="Logo de Topos FC">
     <h1>PÁGINA OFICIAL</h1>
   </div>
 </div>
@@ -45,7 +48,11 @@
   <div class="calendarheader">
   <h1>Calendario de disponibilidad</h1>
   <h4>CANCHA DE TOPOS F.C.</h4>
+  <div class = "slot-div">
+  <p id="slot_message" ></p> <!-- Message placeholder-->
 </div>
+</div>
+<!-- Calendar print section -->
   <div class="calendar-section">
     <h2>Seleccione la fecha de su evento</h2>
     <div class="calendar2"></div>
@@ -66,11 +73,33 @@
       <li>21:00</li>
       <!-- ... -->
     </ul>
-    <p id="slot_message"></p> <!-- Message placeholder-->
-    <button id="select-button">Seleccionar</button>
+    <button class="select-button"onclick="toggleFormDisplay()">Seleccionar</button>
   </div>
   </div>
-
+</div>
+<!-- Form section to display-->
+<div class="form-section">
+<form class="form-container" style="display: none;">
+  <div class="checkmark-icon">
+    <img src="https://www.pngitem.com/pimgs/m/111-1116836_check-mark-logo-transparent-transparent-quality-check-icon.png" alt="Checkmark">
+  </div>
+  <div class="form-header">
+    Datos del responsable de la reserva
+  </div>
+  <div class="form-field">
+    <label for="name">Nombre:</label>
+    <input type="text" id="name" name="name">
+  </div>
+  <div class="form-field">
+    <label for="phone">Teléfono:</label>
+    <input type="tel" id="phone" name="phone">
+  </div>
+  <div class="form-field">
+    <label for="email">Correo:</label>
+    <input type="email" id="email" name="email">
+  </div>
+  <button id="next-button">Siguiente</button>
+</form>
 </div>
 <!-- Steps Bar Container -->
 <div class="steps-bar-container">
@@ -85,9 +114,10 @@
 <footer>
   <p>Topos F.C. Madriguera</p>
 </footer>
-<script src="calendar_script.js"></script>
+</div>
 <script src="biggertext_script.js"></script>
 <script src="hours_script.js"></script>
 <script src="stepst_script.js"></script>
+<script src="calendar_script.js"></script>
 </body>
 </html>

@@ -3,19 +3,34 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('https://th.bing.com/th/id/OIP.qPbqurQoCAZH5xdx_R4OtQHaE7?rs=1&pid=ImgDetMain');
+    background-image: url('fondo.png');
     background-size: cover;
     background-attachment: fixed;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
     background-blend-mode: overlay;
   }
+
+  .contenido {
+    margin-top: 100px;
+    padding-top: 10px;
+    height: calc(100vh - 100px);
+    overflow-y: auto;
+  }
+
+  .logo1 {
+    position: relative;
+    width: 30%;
+    left: 35.4%;
+    top: 0px;
+  }
+
   .navbar {
     display: flex;
     justify-content: space-around;
     padding: 1em;
     position: fixed;
     width: 100%;
-    top: 0;
+    top: 20px;
     background-color: transparent;
     z-index: 10;
   }
@@ -103,17 +118,30 @@ body {
     border-radius: 35px;
     display: flex;
     flex-direction: row; /* Align items horizontally */
-    padding: 40px;
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-bottom: 25px;
+    padding-right: 25px;
     align-items: flex-start; /* Align items to the top */
     margin-left: auto;
     margin-right: auto;
+    
   }
   .contentcalendar {
     display: flex;
+    width: auto;
+    height: 520px;
+    padding: 0px;
   }
   .calendarheader {
+    width: auto;
     flex: 1;
-    margin-right: 20px; /* Add space between the title and the calendar */
+    margin-right: 2px; /* Add space between the title and the calendar */
+  }
+  .slot-div {
+    width: 250px;
+    flex: 1;
+    margin-right: 2px; /* Add space between the title and the calendar */
   }
   .calendar-section {
     flex: 1;
@@ -143,11 +171,17 @@ body {
       opacity: 0;
     }
   }
-  
+  #diaselect {
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-bottom: 9px;
+  }
   .time-slots-section {
     flex: 1;
+    height: 500px;
+    width: 90px;
     background-color: white;
-    padding: 20px;
+    padding: 10px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin-left: 20px;
@@ -203,14 +237,18 @@ animation: slideOut 0.5s forwards; /* Apply the animation */
 }
 
 ul#time-slots {
+    margin-left: 4px;
+    margin-top: 1px;
   list-style-type: none;
   padding: 0;
+  margin-bottom: 1px;
 }
 
 ul#time-slots li {
+    font-size: 0.95em;
   border-radius: 14px;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -218,7 +256,7 @@ ul#time-slots li {
 ul#time-slots li:hover {
   background-color: #e9ecef; /* Slightly darker gray on hover */
 }
-#select-button {
+.select-button {
   margin-left: 70px;
   background-color: black; /* Darker green for the select button */
   color: white;
@@ -228,7 +266,7 @@ ul#time-slots li:hover {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-#select-button:hover {
+.select-button:hover {
   background-color: #454545; /* Slightly darker gray on hover */
 }
 
@@ -248,8 +286,8 @@ ul#time-slots li:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40%;
-  margin-left: 29%;
+  width: 30%;
+  margin-left: 34.5%;
   margin-top: 30px; /* Adjust as needed */
 }
 
@@ -279,3 +317,74 @@ ul#time-slots li:hover {
   margin: 0 0px; /* Spacing around lines */
 }
 
+/* Form styles */
+.form-container {
+    font-size: 20px;
+    margin-top: 3%;
+margin-left: 29%;
+  background-color: #fff;
+  padding: 30px; /* Aumento del relleno para hacer el formulario más grande */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 35%; /* Ancho aumentado para hacer el formulario más grande */
+  height: 27.23%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.checkmark-icon {
+margin-top: 40px;
+display: block;
+text-align: center;
+margin-bottom: 4px;
+}
+.checkmark-icon img {
+width: 60px; /* Aumento del tamaño de la imagen del icono de verificación */
+height: auto;
+}
+
+.form-header {
+font-size: 1.3em;
+font-weight: 700;
+text-align: center;
+margin-bottom: 20px; /* Aumento del margen para hacer el título más grande */
+}
+.form-field {
+display: flex;
+align-items: center; /* Asegura alineación vertical */
+width: 100%;
+margin-bottom: 10px;
+}
+.form-field label {
+color: #333;
+margin-left: 10px;
+margin-right: 5px;
+font-size: 0.9em;
+text-align: right;
+flex-basis: 35%; /* Ajusta el ancho de la etiqueta */
+font-weight: bold;
+}
+.form-field input {
+background-color: #e9ecef;
+width: 39%; /* Ajusta el ancho del campo de entrada */
+padding: 8px;
+border: none;
+border-radius: 13px;
+margin-right: auto; /* Empuja el campo de entrada hacia la etiqueta */
+}
+
+#next-button {
+font-size: 0.95em;
+background-color: black;
+color: white;
+padding: 15px 1px; /* Aumento del relleno para el botón */
+border: none;
+border-radius: 4px;
+cursor: pointer;
+transition: background-color 0.3s;
+margin-top: 30px; /* Aumento del margen superior para el botón */
+width: 40%;
+}
+#next-button:hover {
+background-color: #454545;
+}

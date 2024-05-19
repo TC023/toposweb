@@ -6,7 +6,7 @@ let originalFontSize = 16; // Set your original font size here
 
     if (currentFontSize === originalFontSize) {
       // Increase font size
-      body.style.fontSize = '20px'; // Adjust as needed
+      body.style.fontSize = currentFontSize + '20px'; // Adjust as needed
     } else {
       // Restore original font size
       body.style.fontSize = originalFontSize + 'px';
