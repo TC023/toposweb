@@ -412,21 +412,6 @@ ul#time-slots li:hover {
   background-color: white; /* Line color */
   margin: 0 0px; /* Spacing around lines */
 }
-.step-1 {
-  background-color: #2196F3;
-}
-
-.step-2 {
-  background-color: #2196F3;
-}
-
-.step-3 {
-  background-color: #2196F3;
-}
-
-.step-4 {
-  background-color: #2196F3;
-}
 
 /* Form styles */
 .form-section {

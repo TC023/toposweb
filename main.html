@@ -80,7 +80,7 @@
 </div>
 <!-- Form section to display-->
 <div class="form-section" style="display: none;">
-<form class="form-container">
+<form id="reservation-form" class="form-container">
   <div class="checkmark-icon">
     <img src="https://i.imgur.com/7qPMdhy.png" alt="Checkmark">
   </div>
@@ -109,8 +109,8 @@
   <p class="texto-step3">Porfavor corrobora tu información antes de continuar</p>
   <div class="contenedor-info-step3">
     <div class="izquierda-step3">
-      <p><b>Nombre:</b> Fernanda Hernández<br><b>Teléfono:</b> 2294531171<br>
-        <b>Correo:</b> fer_hdz@gmail.com
+      <p><b>Nombre:</b> {{nombre}}<br><b>Teléfono:</b> {{telefono}}<br>
+        <b>Correo:</b> {{correo}}
       </p>
     </div>
     <div class="derecha-step3">
@@ -118,7 +118,7 @@
         14:00 - 16:00</p>
     </div>
   </div>
-  <button id="button-step3">Siguiente</button>
+  <button id="button-step3">Confirmar</button>
 </div>
 
 <!-- Step 4 idk the name -->
@@ -126,7 +126,7 @@
   <img class="icono-step4" src="https://i.imgur.com/7qPMdhy.png">
 <h2 class="titulo-step4">En breve un administrador se comunicará contigo para realizar el pago de la reserva</h2>
 <p class="texto-step4">En caso de dudas comunicarse al siguiente correo:<br> dudasreservaciones@gmail.com</p>
-<button id="boton-step4">Siguiente</button>
+<button id="boton-step4">Listo</button>
 </div>
 
 <!-- Steps Bar Container -->
@@ -169,5 +169,6 @@
 <script src="hours_script.js"></script>
 <script src="stepst_script.js"></script>
 <script src="calendar_script.js"></script>
+<script src="submit_script.js"></script>
 </body>
 </html>
