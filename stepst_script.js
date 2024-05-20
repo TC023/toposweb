@@ -6,8 +6,6 @@ function updateProgressCircles() {
   stepsCircle.forEach((step, index) => {
     if (index < currentStep) {
       step.style.backgroundColor = '#2196F3';
-    } else if (index == currentStep) {
-      step.style.backgroundColor = '#2196F3';
     } else {
       step.style.backgroundColor = '#ddd';
     }
@@ -89,6 +87,54 @@ function reloadPage() {
   // window.location.href = 'main.html';
 }
 
+  // Función para ocultar la sección de confirmación y mostrar la ventana del forms
+  function backtoggleStep3Display() {
+    // Ocultar la ventana de confirmación
+    var step3 = document.querySelector('.contenedor-step3');
+    if (step3) {
+      step3.style.display = 'none';
+    }
+  
+    // Mostrar la sección del form
+    var formSection = document.querySelector('.form-section');
+    if (formSection) {
+      formSection.style.display = 'block';
+      formSection.classList.add('visible');
+    }
+  }
+// Función para ocultar la sección del form y mostrar el calendario
+function backtoggleFormDisplay() {
+  // Ocultar el formulario de reserva
+  var formContainer = document.querySelector('.form-section');
+  if (formContainer) {
+    formContainer.style.display = 'none';
+    formContainer.classList.remove('visible');
+  }
+
+   // Mostrar la sección del calendario
+   var calendarSection = document.querySelector('.calendarcontainer');
+  if (calendarSection) {
+    calendarSection.style.display = 'flex';
+    calendarSection.classList.add('visible');
+  }
+}
+  function prevStep() {
+    if (currentStep < steps.length) {
+      if (currentStep == 1) {
+        currentStep--;
+      updateProgress();
+      updateProgressCircles();
+        backtoggleFormDisplay();
+      } else if (currentStep == 2) {
+        currentStep--;
+      updateProgress();
+      updateProgressCircles();
+        backtoggleStep3Display();
+      }
+
+    }
+  }
+
   // Asegúrate de que esta función se llame cuando se haga clic en el botón "Seleccionar"
 document.getElementById('select-button').addEventListener('click', toggleFormDisplay);
   // Asegúrate de que esta función se llame cuando se haga clic en el botón "Seleccionar"
@@ -105,3 +151,7 @@ document.getElementById('select-button').addEventListener('click', toggleFormDis
 document.getElementById('boton-step4').addEventListener('click', reloadPage);
 
   updateProgress();
+
+// Asegúrate de que esta función se llame cuando se haga clic en el botón "Seleccionar"
+document.getElementById('back-button').addEventListener('click', prevStep);
+document.getElementById('back2-button').addEventListener('click', prevStep);

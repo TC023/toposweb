@@ -10,8 +10,8 @@
 <body>
 <div class="navbar">
   <a href="#">INICIO</a>
-  <a href="#">EQUIPOS & TORNEOS</a>
-  <a href="#">EVENTOS & FOTOS</a>
+  <a href="liga.php">EQUIPOS & TORNEOS</a>
+  <a href="eventos.php">EVENTOS & FOTOS</a>
   <a href="#">INICIAR SESIÓN</a>
   <button onclick="toggleFontSize()">AGRANDAR TEXTO</button>
 </div>
@@ -82,7 +82,9 @@
 <div class="form-section" style="display: none;">
 <form id="reservation-form" class="form-container">
   <div class="checkmark-icon">
+    <a id="back-button">
     <img src="https://i.imgur.com/7qPMdhy.png" alt="Checkmark">
+  </a>
   </div>
   <div class="form-header">
     Datos del responsable de la reserva
@@ -104,7 +106,9 @@
 </div>
 <!-- Data confirm | Step 3 -->
 <div class="contenedor-step3" style="display: none;">
+  <a id="back2-button">
   <img class="icono-step3" src="https://i.imgur.com/7qPMdhy.png">
+</a>
   <h2 class="titulo-step3">Tu reservación está siendo procesada</h2>
   <p class="texto-step3">Porfavor corrobora tu información antes de continuar</p>
   <div class="contenedor-info-step3">

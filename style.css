@@ -591,3 +591,11 @@ background-color: #454545;
 #boton-step4:hover {
   background-color: #333;
 }
+
+/* Back button */
+#back-button {
+  cursor: pointer;
+}
+#back2-button {
+  cursor: pointer;
+}
