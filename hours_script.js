@@ -1,3 +1,5 @@
+  // Initialize an array to store selected hours
+  let selectedHours = [];
 document.addEventListener('DOMContentLoaded', function() {
     const timeSlots = document.querySelectorAll('#time-slots li');
     var messageElement = document.getElementById('slot_message'); // Get the message element
@@ -41,3 +43,19 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   });
+
+
+// Update the hours section
+const hoursSection = document.getElementById('hoursSelected');
+
+// Function to collect selected hours
+function collectSelectedHours() {
+  const selectedSlots = document.querySelectorAll('#time-slots li.selected');
+  selectedHours.length = 0; // Clear the array
+  selectedSlots.forEach(slot => {
+    selectedHours.push(slot.textContent);
+  });
+  hoursSection.innerHTML = `${selectedHours.join(', ')}`;
+}
+// Asegúrate de que esta función se llame cuando se haga clic en el botón "Siguiente" (button-step3)
+document.getElementById('next-button').addEventListener('click', collectSelectedHours);

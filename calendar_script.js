@@ -5,6 +5,7 @@ prevBtn.textContent = 'Prev';
 const nextBtn = document.createElement('button');
 nextBtn.textContent = 'Next';
 let selectedDate = null;
+let fullDateString = null;
 
 // Function to color the hour slots for a specific date
 function colorSlotsForDate(date, pendienteReservations, ocupadoReservations) {
@@ -72,11 +73,15 @@ function sendInfo(dia, mes, diaSemana){
     11: 'Diciembre'
 };
 
+// Recovery date for the confirm section
+  const confirmDate = document.getElementById('confirmDate');
+  confirmDate.innerHTML = "Horas seleccionadas para el " + diaToStr[diaSemana] + " " + dia + " de " + mesToStr[mes] + ":";
+
+// Date for the hours section display
   const horas = document.querySelector('.time-slots-section');
   const title = document.getElementById('diaselect');
   // Create a date string for comparison
   const dateString = `${dia}-${mes}-${currentYear}`;
-  // Check if the selected date is the same as the previously selected date
   // Check if the selected date is the same as the previously selected date
   if (selectedDate === dateString) {
     // If the same date is clicked, toggle the visibility class and clear the selected date
@@ -96,7 +101,7 @@ function sendInfo(dia, mes, diaSemana){
   const formattedMonth = (mes + 1).toString().padStart(2, '0'); // JavaScript months are 0-indexed
 
   // Construct the full date string in the format "YYYY-MM-DD"
-  const fullDateString = `${currentYear}-${formattedMonth}-${formattedDay}`;
+  fullDateString = `${currentYear}-${formattedMonth}-${formattedDay}`;
 
   // Call colorSlotsForDate with the selected date
   fetchReservations().then(reservations => {

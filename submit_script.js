@@ -1,3 +1,7 @@
+function getTimestamps() {
+    return selectedHours.map(hour => `${fullDateString} ${hour}:00`);
+  }
+  
 // Function to collect user inputs and update the confirmation section
 function collectUserData() {
     // Get the user input values from the form fields
@@ -21,6 +25,14 @@ function collectUserData() {
 document.getElementById('button-step3').addEventListener('click', function() {
     // Collect the form data
     var formData = new FormData(document.getElementById('reservation-form'));
+
+    // Get the timestamps for the selected hours
+  var timestamps = getTimestamps();
+
+  // Append each timestamp to the form data
+  timestamps.forEach((timestamp, index) => {
+    formData.append(`timestamp[${index}]`, timestamp);
+  });
   
     // Send the form data to the PHP script using AJAX
     var xhr = new XMLHttpRequest();
