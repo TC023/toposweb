@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             slot.style.backgroundColor = '#5fc175'; // Set to green when selected
           }
         }
-      });
+        collectSelectedHours();});
     });
   });
 

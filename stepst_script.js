@@ -30,6 +30,8 @@ function nextStep() {
 
 // Función para ocultar la sección del calendario y mostrar el formulario de reserva
 function toggleFormDisplay() {
+  if (selectedHours[0] != null) {
+    nextStep();
     // Ocultar la sección del calendario
     var calendarSection = document.querySelector('.calendarcontainer');
     if (calendarSection) {
@@ -42,6 +44,18 @@ function toggleFormDisplay() {
       formContainer.style.display = 'flex';
       formContainer.classList.add('visible');
     }
+  }
+  else if (selectedHours.length === 0){
+    var messageElement = document.getElementById('slot_message'); // Get the message element
+    const messageDiv = document.querySelector('.slot-div');
+    // Remove 'visible' class and add it back to restart the animation
+    messageDiv.classList.remove('ovisible');
+    messageDiv.classList.remove('visible');
+    // Force reflow/repaint for the animation to restart
+    void messageDiv.offsetWidth;
+    messageDiv.classList.add('visible');
+    messageElement.textContent = 'No hay horas seleccionadas.';
+  }
   }
 
   // Función para ocultar la sección del form y mostrar la ventana de confirmación
@@ -137,8 +151,6 @@ function backtoggleFormDisplay() {
 
   // Asegúrate de que esta función se llame cuando se haga clic en el botón "Seleccionar"
 document.getElementById('select-button').addEventListener('click', toggleFormDisplay);
-  // Asegúrate de que esta función se llame cuando se haga clic en el botón "Seleccionar"
-  document.getElementById('select-button').addEventListener('click', nextStep);
   // Asegúrate de que esta función se llame cuando se haga clic en el botón "Siguiente"
   document.getElementById('next-button').addEventListener('click', toggleStep3Display);
   // Asegúrate de que esta función se llame cuando se haga clic en el botón "Siguiente"
