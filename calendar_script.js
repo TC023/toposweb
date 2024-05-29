@@ -161,7 +161,7 @@ function createCalendar(year, month) {
 
   // Create days
   let date = 1;
-  const messageDiv = document.querySelector('.slot-div');
+  const messageDiv = document.querySelector('.verrev');
   for (let i = 0; i < 6; i++) {
     const row = document.createElement('tr');
     for (let j = 0; j < 7; j++) {

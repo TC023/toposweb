@@ -146,6 +146,7 @@ body {
     margin-right: 2px; /* Add space between the title and the calendar */
   }
   .slot-div {
+    height: 20px;
     width: 250px;
     flex: 1;
     margin-right: 2px; /* Add space between the title and the calendar */
@@ -176,6 +177,7 @@ body {
     to {
       transform: translateX(-100%);
       opacity: 0;
+      visibility: hidden;
     }
   }
   #diaselect {
@@ -201,8 +203,7 @@ body {
   animation: slideIn 0.5s forwards; /* Apply the animation */
 }
 .ovisible {
-  visibility: visible;
-animation: slideOut 0.5s forwards; /* Apply the animation */
+  animation: slideOut 0.5s forwards; /* Apply the animation */
 }
   .calendar {
   padding: 0.4px;
@@ -265,7 +266,7 @@ ul#time-slots li:hover {
 }
 #select-button {
   margin-left: 70px;
-  background-color: black; /* Darker green for the select button */
+  background-color: black; 
   color: white;
   padding: 10px 20px;
   border: none;
@@ -276,6 +277,29 @@ ul#time-slots li:hover {
 #select-button:hover {
   background-color: #454545; /* Slightly darker gray on hover */
 }
+
+.verrev {
+  margin-top: 320px;
+  align-items: center;
+  margin-left: 50px;
+  flex: 1;
+}
+#ver-button {
+  background-color: #3f82a1;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 24px;
+  cursor: pointer;
+  margin-top: 30px;
+  transition: background-color 0.3s;
+}
+#ver-button:hover {
+background-color: #8abaed;
+}
+
 /* Footer CSS */
 .g1 {
   width: 100%;

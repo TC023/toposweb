@@ -8,6 +8,26 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+  <?php
+	$nombre = $_POST['nombre'] ?? '';
+	$contrasena = $_POST['contrasena'] ?? '';
+	
+	
+	require 'database.php'; 
+	
+	$pdo = Database::connect();
+	
+	$sql = "SELECT * FROM reto_admins WHERE nombre = '$nombre' AND contraseña = '$contrasena'";
+	$stmt = $pdo->query($sql);
+	if ($stmt->rowCount() === 1) {
+		$isAdmin = TRUE;
+	} else {
+		
+		$isAdmin = FALSE;
+	}
+  $isAdmin = 1;
+	
+?> 
 <div class="navbar">
   <a href="#">INICIO</a>
   <a href="liga.php">EQUIPOS & TORNEOS</a>
@@ -49,8 +69,11 @@
   <div class="calendarheader">
   <h1>Calendario de disponibilidad</h1>
   <h4>CANCHA DE TOPOS F.C.</h4>
-  <div class = "slot-div">
+  <div class = "slot-div" style="display: none;">
   <p id="slot_message" ></p> <!-- Message placeholder-->
+</div>
+<div class="verrev" style="display: none;">
+  <button id="ver-button">Ver datos</button>
 </div>
 </div>
 <!-- Calendar print section -->
@@ -169,10 +192,53 @@
   </div>
 </footer>
 </div>
-<script src="biggertext_script.js"></script>
-<script src="hours_script.js"></script>
-<script src="submit_script.js"></script>
-<script src="stepst_script.js"></script>
-<script src="calendar_script.js"></script>
+<script>
+    var isAdmin = "<?php echo $isAdmin; ?>";
+    if (isAdmin == 1) {
+        // var adminScript0 = document.createElement('script');
+        // adminScript0.src = 'adminCalendarControls.js';
+        // document.body.appendChild(adminScript0);
+
+        var adminScript1 = document.createElement('script');
+        adminScript1.src = 'biggertext_script.js';
+        document.body.appendChild(adminScript1);
+
+        var adminScript2 = document.createElement('script');
+        adminScript2.src = 'adminHours.js';
+        document.body.appendChild(adminScript2);
+
+        var adminScript3 = document.createElement('script');
+        adminScript3.src = 'submit_script.js';
+        document.body.appendChild(adminScript3);
+
+        var adminScript4 = document.createElement('script');
+        adminScript4.src = 'stepst_script.js';
+        document.body.appendChild(adminScript4);
+
+        var adminScript5 = document.createElement('script');
+        adminScript5.src = 'calendar_script.js';
+        document.body.appendChild(adminScript5);
+    } else {
+        var userScript1 = document.createElement('script');
+        userScript1.src = 'biggertext_script.js';
+        document.body.appendChild(userScript1);
+
+        var userScript2 = document.createElement('script');
+        userScript2.src = 'hours_script.js';
+        document.body.appendChild(userScript2);
+
+        var userScript3 = document.createElement('script');
+        userScript3.src = 'submit_script.js';
+        document.body.appendChild(userScript3);
+
+        var userScript4 = document.createElement('script');
+        userScript4.src = 'stepst_script.js';
+        document.body.appendChild(userScript4);
+
+        var userScript5 = document.createElement('script');
+        userScript5.src = 'calendar_script.js';
+        document.body.appendChild(userScript5);
+    }
+</script>
 </body>
 </html>
