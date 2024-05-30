@@ -158,6 +158,38 @@
 <button id="boton-step4">Listo</button>
 </div>
 
+<!-- Admin reservation management -->
+<div class="adminContainer" style="display: none;">
+    <button id="atras-button" class="atras-button">
+      <img class="atras" src="https://static.vecteezy.com/system/resources/previews/000/589/654/non_2x/vector-back-icon.jpg" alt="Atrás">
+    </button>
+    <img class="icono" src="https://i.imgur.com/7qPMdhy.png">
+    <h2 class="titulo">Tu reservación está siendo procesada</h2>
+    <p class="texto">Porfavor corrobora tu información antes de continuar</p>
+    <div class="adminContainer-info">
+      <div class="adminizquierda">
+        <p><b>Nombre:</b> Fernanda Hernández <br><b>Teléfono:</b> 2294531171<br>
+          <b>Correo:</b> fer_hdz@gmail.com
+        </p>
+      </div>
+      <div class="adminderecha">
+        <p><b>Horas seleccionadas:</b><br> 10:00 - 11:00<br>
+          14:00 - 16:00</p>
+      </div>
+    </div>
+
+    <div class="adminContainer-botones">
+        <div class="confirmar">
+            <button>Confirmar</button>     
+        </div>
+        
+        <div class="eliminar">
+            <button>Eliminar</button>     
+        </div>      
+    </div>
+
+  </div>
+
 <!-- Steps Bar Container -->
 <div class="steps-bar-container">
   <div class="step-circle step-circle-1"><span class="checkmark">✓</span></div>
@@ -169,37 +201,6 @@
   <div class="step-circle step-circle-4"><span class="checkmark">✓</span></div>
 </div>
 
-<!-- Admin reservation management -->
-<div class="adminContainer" style="display: none;">
-    <button class="atras-button">
-      <img class="atras" src="https://static.vecteezy.com/system/resources/previews/000/589/654/non_2x/vector-back-icon.jpg" alt="Atrás">
-    </button>
-    <img class="icono" src="https://i.imgur.com/7qPMdhy.png">
-    <h2 class="titulo">Tu reservación está siendo procesada</h2>
-    <p class="texto">Porfavor corrobora tu información antes de continuar</p>
-    <div class="contenedor-info">
-      <div class="izquierda">
-        <p><b>Nombre:</b> Fernanda Hernández <br><b>Teléfono:</b> 2294531171<br>
-          <b>Correo:</b> fer_hdz@gmail.com
-        </p>
-      </div>
-      <div class="derecha">
-        <p><b>Horas seleccionadas:</b><br> 10:00 - 11:00<br>
-          14:00 - 16:00</p>
-      </div>
-    </div>
-
-    <div class="contenedor-botones">
-        <div class="confirmar">
-            <button class="manageButtons">Confirmar</button>     
-        </div>
-        
-        <div class="eliminar">
-            <button class="manageButtons">Eliminar</button>     
-        </div>      
-    </div>
-
-  </div>
 <footer class="foot">
   <div class="g1">
     <a href="https://toposfc.org/wp-content/uploads/2023/09/aviso-de-privacidad-integral.pdf">
@@ -229,9 +230,9 @@
 <script>
     var isAdmin = "<?php echo $isAdmin; ?>";
     if (isAdmin == 1) {
-        // var adminScript0 = document.createElement('script');
-        // adminScript0.src = 'adminCalendarControls.js';
-        // document.body.appendChild(adminScript0);
+        var adminScript0 = document.createElement('script');
+        adminScript0.src = 'adminCalendarControls.js';
+        document.body.appendChild(adminScript0);
 
         var adminScript1 = document.createElement('script');
         adminScript1.src = 'biggertext_script.js';

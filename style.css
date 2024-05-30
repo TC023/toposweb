@@ -642,14 +642,12 @@ background-color: #454545;
 }
 
 .icono {
-  padding-top: 20px;
   width: 50px;
   height: 50px;
 }
 
 .adminContainer {
   width: 600px;
-  height: 400px;
   margin: 0 auto;
   background-color: #fff;
   border-radius: 5px;
@@ -657,7 +655,7 @@ background-color: #454545;
   padding: 30px;
   text-align: center;
   margin-top: 100px;
-  position: relative; /* Make this container a relatively positioned container */
+  margin-bottom: 100px;
 }
 
 .titulo {
@@ -670,24 +668,24 @@ background-color: #454545;
   font-size: 18px;
 }
 
-.contenedor-info {
+.adminContainer-info {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
 
-.izquierda {
+.adminizquierda {
   padding-left: 65px;
   flex: 1;
   text-align: justify;
 }
 
-.derecha {
+.adminderecha {
   flex: 1;
   text-align: justify;
 }
 
-.contenedor-botones {
+.adminContainer-botones {
   display: flex;
   justify-content: center; /* Center the buttons horizontally */
   align-items: center; /* Center the buttons vertically if needed */
@@ -695,7 +693,7 @@ background-color: #454545;
   margin-top: 30px; /* Add space above the buttons */
 }
 
-.manageButtons {
+.adminContainer-botones button {
   width: 90px;
   height: 40px;
   font-size: 16px;

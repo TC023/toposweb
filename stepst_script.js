@@ -165,6 +165,6 @@ document.getElementById('boton-step4').addEventListener('click', reloadPage);
 
   updateProgress();
 
-// Asegúrate de que esta función se llame cuando se haga clic en el botón "Seleccionar"
+// Asegúrate de que esta función se llame cuando se haga clic en el botón "Back" en los páneles
 document.getElementById('back-button').addEventListener('click', prevStep);
 document.getElementById('back2-button').addEventListener('click', prevStep);
