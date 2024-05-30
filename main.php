@@ -81,7 +81,7 @@
     <h2>Seleccione la fecha de su evento</h2>
     <div class="calendar2"></div>
   </div>
-  <div class="time-slots-section">
+  <div class="time-slots-section" >
     <h3 id = 'diaselect'></h3>
     <ul id="time-slots">
       <!-- Time slots go here -->
@@ -164,17 +164,17 @@
       <img class="atras" src="https://static.vecteezy.com/system/resources/previews/000/589/654/non_2x/vector-back-icon.jpg" alt="Atrás">
     </button>
     <img class="icono" src="https://i.imgur.com/7qPMdhy.png">
-    <h2 class="titulo">Tu reservación está siendo procesada</h2>
-    <p class="texto">Porfavor corrobora tu información antes de continuar</p>
+    <h2 class="titulo">Confirmar o eliminar reservación</h2>
+    <p class="texto">Porfavor corrobora la información antes de continuar</p>
     <div class="adminContainer-info">
       <div class="adminizquierda">
-        <p><b>Nombre:</b> Fernanda Hernández <br><b>Teléfono:</b> 2294531171<br>
-          <b>Correo:</b> fer_hdz@gmail.com
-        </p>
+      <p><b>Nombre:</b> {{nombre}}<br><b>Teléfono:</b> {{telefono}}<br>
+        <b>Correo:</b> {{correo}}
+      </p>
       </div>
       <div class="adminderecha">
-        <p><b>Horas seleccionadas:</b><br> 10:00 - 11:00<br>
-          14:00 - 16:00</p>
+        <p><b id="savedDate"></b><br></p>
+        <p id="savedHours"></p>
       </div>
     </div>
 
@@ -228,7 +228,9 @@
 </footer>
 </div>
 <script>
-    var isAdmin = "<?php echo $isAdmin; ?>";
+  var isAdmin = "<?php echo $isAdmin; ?>";
+  document.addEventListener('DOMContentLoaded', function() {
+    
     if (isAdmin == 1) {
         var adminScript0 = document.createElement('script');
         adminScript0.src = 'adminCalendarControls.js';
@@ -274,6 +276,7 @@
         userScript5.src = 'calendar_script.js';
         document.body.appendChild(userScript5);
     }
+  })
 </script>
 </body>
 </html>

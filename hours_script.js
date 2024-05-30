@@ -1,6 +1,5 @@
   // Initialize an array to store selected hours
   let selectedHours = [];
-      document.addEventListener('DOMContentLoaded', function() {
         const timeSlots = document.querySelectorAll('#time-slots li');
         var messageElement = document.getElementById('slot_message'); // Get the message element
         var messageDiv = document.querySelector('.slot-div');
@@ -46,7 +45,6 @@
             }
             collectSelectedHours();});
         });
-      });
 	
 // Update the hours section
 const hoursSection = document.getElementById('hoursSelected');

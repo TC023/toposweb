@@ -76,6 +76,8 @@ function sendInfo(dia, mes, diaSemana){
 // Recovery date for the confirm section
   const confirmDate = document.getElementById('confirmDate');
   confirmDate.innerHTML = "Horas seleccionadas para el " + diaToStr[diaSemana] + " " + dia + " de " + mesToStr[mes] + ":";
+  const savedDate = document.getElementById('savedDate');
+  savedDate.innerHTML = "Horas seleccionadas para el " + diaToStr[diaSemana] + " " + dia + " de " + mesToStr[mes] + ":";
 
 // Date for the hours section display
   const horas = document.querySelector('.time-slots-section');
@@ -85,13 +87,20 @@ function sendInfo(dia, mes, diaSemana){
   // Check if the selected date is the same as the previously selected date
   if (selectedDate === dateString) {
     // If the same date is clicked, toggle the visibility class and clear the selected date
-    horas.classList.toggle('ovisible');
+    horas.classList.add('ovisible');
     title.innerHTML = horas.classList.contains('visible') ? "Horarios para el:<br>" + diaToStr[diaSemana] + " " + dia + " de " + mesToStr[mes] : "Horarios para el:";
-    selectedDate = horas.classList.contains('visible') ? dateString : null;
+    // selectedDate = horas.classList.contains('visible') ? dateString : null;
+    selectedDate = null;
   } else {
     // If a different date is clicked, show the hours and update the selected date
+    // Remove 'visible' class and add it back to restart the animation
     horas.classList.remove('ovisible');
+    horas.classList.remove('visible');
+    // Force reflow/repaint for the animation to restart
+    void horas.offsetWidth;
     horas.classList.add('visible');
+    // horas.classList.remove('ovisible');
+    // horas.classList.add('visible');
     title.innerHTML = "Horarios para el:<br>" + diaToStr[diaSemana] + " " + dia + " de " + mesToStr[mes];
     selectedDate = dateString;
   }

@@ -30,6 +30,25 @@ function toggleAdminDisplay() {
       }
     }
 
+    function collectUserData() {
+      // Get the user input values from the form fields
+      var userName = document.getElementById('name').value;
+      var userPhone = document.getElementById('phone').value;
+      var userEmail = document.getElementById('email').value;
+    
+      // Update the confirmation section with the user input values
+      var confirmationSection = document.querySelector('.contenedor-step3 .izquierda-step3');
+      confirmationSection.innerHTML = `
+        <p><b>Nombre:</b> ${userName}<br>
+        <b>Teléfono:</b> ${userPhone}<br>
+        <b>Correo:</b> ${userEmail}
+        </p>
+      `;
+    
+      // You can also collect and display the selected hours here
+      // ...
+    }
+
 // Asegúrate de que esta función se llame cuando se haga clic en el botón "Seleccionar"
 document.getElementById('ver-button').addEventListener('click', toggleAdminDisplay);
 // Asegúrate de que esta función se llame cuando se haga clic en el botón "atras"
