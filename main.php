@@ -104,10 +104,11 @@
 <!-- Form section to display-->
 <div class="form-section" style="display: none;">
 <form id="reservation-form" class="form-container">
+<a id="back-button" class="atras-button">
+      <img class="atras" src="https://static.vecteezy.com/system/resources/previews/000/589/654/non_2x/vector-back-icon.jpg" alt="Atrás">
+</a>
   <div class="checkmark-icon">
-    <a id="back-button">
-    <img src="https://i.imgur.com/7qPMdhy.png" alt="Checkmark">
-  </a>
+    <img class="icono" src="https://i.imgur.com/7qPMdhy.png">
   </div>
   <div class="form-header">
     Datos del responsable de la reserva
@@ -129,9 +130,10 @@
 </div>
 <!-- Data confirm | Step 3 -->
 <div class="contenedor-step3" style="display: none;">
-  <a id="back2-button">
+  <button id="back2-button" class="atras-button">
+      <img class="atras" src="https://static.vecteezy.com/system/resources/previews/000/589/654/non_2x/vector-back-icon.jpg" alt="Atrás">
+  </button>
   <img class="icono-step3" src="https://i.imgur.com/7qPMdhy.png">
-</a>
   <h2 class="titulo-step3">Tu reservación está siendo procesada</h2>
   <p class="texto-step3">Porfavor corrobora tu información antes de continuar</p>
   <div class="contenedor-info-step3">
@@ -166,6 +168,38 @@
   <div class="step step-2"></div>
   <div class="step-circle step-circle-4"><span class="checkmark">✓</span></div>
 </div>
+
+<!-- Admin reservation management -->
+<div class="adminContainer" style="display: none;">
+    <button class="atras-button">
+      <img class="atras" src="https://static.vecteezy.com/system/resources/previews/000/589/654/non_2x/vector-back-icon.jpg" alt="Atrás">
+    </button>
+    <img class="icono" src="https://i.imgur.com/7qPMdhy.png">
+    <h2 class="titulo">Tu reservación está siendo procesada</h2>
+    <p class="texto">Porfavor corrobora tu información antes de continuar</p>
+    <div class="contenedor-info">
+      <div class="izquierda">
+        <p><b>Nombre:</b> Fernanda Hernández <br><b>Teléfono:</b> 2294531171<br>
+          <b>Correo:</b> fer_hdz@gmail.com
+        </p>
+      </div>
+      <div class="derecha">
+        <p><b>Horas seleccionadas:</b><br> 10:00 - 11:00<br>
+          14:00 - 16:00</p>
+      </div>
+    </div>
+
+    <div class="contenedor-botones">
+        <div class="confirmar">
+            <button class="manageButtons">Confirmar</button>     
+        </div>
+        
+        <div class="eliminar">
+            <button class="manageButtons">Eliminar</button>     
+        </div>      
+    </div>
+
+  </div>
 <footer class="foot">
   <div class="g1">
     <a href="https://toposfc.org/wp-content/uploads/2023/09/aviso-de-privacidad-integral.pdf">

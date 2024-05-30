@@ -2,8 +2,8 @@
   let selectedHours = [];
       document.addEventListener('DOMContentLoaded', function() {
         const timeSlots = document.querySelectorAll('#time-slots li');
-        var messageElement = document.getElementById('ver-button'); // Get the message element
-        var messageDiv = document.querySelector('.verrev');
+        var verElement = document.getElementById('ver-button'); // Get the message element
+        var verDiv = document.querySelector('.verrev');
         var selectedSlot = null;
         timeSlots.forEach(slot => {
           slot.addEventListener('click', function() {
@@ -25,13 +25,13 @@
                         selectedSlot.style.backgroundColor = 'rgb(253, 96, 96)'; // Set back to the default red color
                     }
                 }
-              messageDiv.style.display = 'block';
+                verDiv.style.display = 'block';
               // Remove 'visible' class and add it back to restart the animation
-              messageDiv.classList.remove('ovisible');
-            messageDiv.classList.remove('visible');
+              verDiv.classList.remove('ovisible');
+              verDiv.classList.remove('visible');
             // Force reflow/repaint for the animation to restart
-            void messageDiv.offsetWidth;
-            messageDiv.classList.add('visible');
+            void verDiv.offsetWidth;
+            verDiv.classList.add('visible');
             
             // Toggle the 'look' class and change the background color accordingly
             slot.classList.add('look');
@@ -40,7 +40,7 @@
 
             } else if (isOrangeSelected) { // Based on color, it deletes the "look" class if a selected orange is clicked
                 if (slot.classList.contains('look')) {
-                    messageDiv.classList.add('ovisible');
+                    verDiv.classList.add('ovisible');
                     slot.classList.remove('look');
                     slot.style.backgroundColor = 'rgb(255, 151, 105)'; // Set back to the default orange color
                     selectedSlot = null; // No slot is currently selected
@@ -56,13 +56,13 @@
                     slot.style.backgroundColor = 'rgb(253, 96, 96)'; // Set back to the default red color
                 }
             }
-                messageDiv.style.display = 'block';
+            verDiv.style.display = 'block';
                 // Remove 'visible' class and add it back to restart the animation
-                messageDiv.classList.remove('ovisible');
-                messageDiv.classList.remove('visible');
+                verDiv.classList.remove('ovisible');
+                verDiv.classList.remove('visible');
                 // Force reflow/repaint for the animation to restart
-                void messageDiv.offsetWidth;
-                messageDiv.classList.add('visible');
+                void verDiv.offsetWidth;
+                verDiv.classList.add('visible');
         
                 // Toggle the 'look' class and change the background color accordingly
                 slot.classList.add('look');
@@ -71,7 +71,7 @@
     
             } else if (isRedSelected) { // Based on color, it deletes the "look" class if a selected red is clicked
                 if (slot.classList.contains('look')) {
-                    messageDiv.classList.add('ovisible');
+                    verDiv.classList.add('ovisible');
                     slot.classList.remove('look');
                     slot.style.backgroundColor = 'rgb(253, 96, 96)'; // Set back to the default red color
                     selectedSlot = null; // No slot is currently selected
@@ -79,7 +79,7 @@
             } else {
               // Toggle the 'selected' class and change the background color accordingly
               if (slot.classList.contains('selected')) {
-                messageDiv.classList.add('ovisible');
+                verDiv.classList.add('ovisible');
                 slot.classList.remove('selected');
                 slot.style.backgroundColor = ''; // Set back to the default color
                 if (selectedSlot) {
@@ -92,7 +92,7 @@
                     }
                 }
               } else {
-                messageDiv.classList.add('ovisible');
+                verDiv.classList.add('ovisible');
                 slot.classList.add('selected');
                 slot.style.backgroundColor = '#5fc175'; // Set to green when selected
                 if (selectedSlot) {

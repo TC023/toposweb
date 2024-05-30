@@ -48,6 +48,7 @@ function toggleFormDisplay() {
   else if (selectedHours.length === 0){
     var messageElement = document.getElementById('slot_message'); // Get the message element
     const messageDiv = document.querySelector('.slot-div');
+    messageDiv.style.display = 'block';
     // Remove 'visible' class and add it back to restart the animation
     messageDiv.classList.remove('ovisible');
     messageDiv.classList.remove('visible');

@@ -167,6 +167,7 @@ body {
     to {
       transform: translateX(0);
       opacity: 1;
+      visibility: visible;
     }
   }
   @keyframes slideOut {
@@ -199,7 +200,6 @@ body {
   }
 
   .visible {
-    visibility: visible;
   animation: slideIn 0.5s forwards; /* Apply the animation */
 }
 .ovisible {
@@ -622,4 +622,110 @@ background-color: #454545;
 }
 #back2-button {
   cursor: pointer;
+}
+
+/* Admin panel */
+.atras-button {
+  width: 50px;
+  height: 50px;
+  background: none;
+  border: none;
+  position: absolute; /* Position it absolutely */
+  top: 20px; /* Adjust the value as needed */
+  left: 20px; /* Adjust the value as needed */
+  cursor: pointer;
+}
+
+.atras {
+  width: 30px;
+  height: 30px;
+}
+
+.icono {
+  padding-top: 20px;
+  width: 50px;
+  height: 50px;
+}
+
+.adminContainer {
+  width: 600px;
+  height: 400px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+  margin-top: 100px;
+  position: relative; /* Make this container a relatively positioned container */
+}
+
+.titulo {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.texto {
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+.contenedor-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.izquierda {
+  padding-left: 65px;
+  flex: 1;
+  text-align: justify;
+}
+
+.derecha {
+  flex: 1;
+  text-align: justify;
+}
+
+.contenedor-botones {
+  display: flex;
+  justify-content: center; /* Center the buttons horizontally */
+  align-items: center; /* Center the buttons vertically if needed */
+  gap: 30px; /* Space between the buttons */
+  margin-top: 30px; /* Add space above the buttons */
+}
+
+.manageButtons {
+  width: 90px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirmar button {
+  background-color: #278261;
+  color: white;
+}
+
+.eliminar button {
+  background-color: #BF3535;
+  color: white;
+}
+
+.boton {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 12px 24px;
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+.boton:hover {
+  background-color: #333;
 }
