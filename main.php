@@ -69,7 +69,7 @@
   <div class="calendarheader">
   <h1>Calendario de disponibilidad</h1>
   <h4>CANCHA DE TOPOS F.C.</h4>
-  <div class = "slot-div" style="display: none;">
+  <div class = "slot-div">
   <p id="slot_message" ></p> <!-- Message placeholder-->
 </div>
 <div class="verrev" style="display: none;">

@@ -2,7 +2,8 @@
   let selectedHours = [];
       document.addEventListener('DOMContentLoaded', function() {
         const timeSlots = document.querySelectorAll('#time-slots li');
-        var verElement = document.getElementById('ver-button'); // Get the message element
+        var messageElement = document.getElementById('slot_message'); // Get the message element
+        var messageDiv = document.querySelector('.slot-div');
         var verDiv = document.querySelector('.verrev');
         var selectedSlot = null;
         timeSlots.forEach(slot => {
@@ -18,6 +19,7 @@
                 // Avoid having multiple slots selected
                 if (selectedSlot) {
                     selectedSlot.classList.remove('look');
+                    messageDiv.classList.add('ovisible');
                     if (selectedSlot.style.backgroundColor === 'rgb(191, 101, 62)') { // If the already selected slot is orange (pending)
                         selectedSlot.style.backgroundColor = 'rgb(255, 151, 105)'; // Set back to the default orange color
                     }
@@ -25,6 +27,7 @@
                         selectedSlot.style.backgroundColor = 'rgb(253, 96, 96)'; // Set back to the default red color
                     }
                 }
+                messageDiv.classList.add('ovisible');
                 verDiv.style.display = 'block';
               // Remove 'visible' class and add it back to restart the animation
               verDiv.classList.remove('ovisible');
@@ -40,6 +43,7 @@
 
             } else if (isOrangeSelected) { // Based on color, it deletes the "look" class if a selected orange is clicked
                 if (slot.classList.contains('look')) {
+                    messageDiv.classList.add('ovisible');
                     verDiv.classList.add('ovisible');
                     slot.classList.remove('look');
                     slot.style.backgroundColor = 'rgb(255, 151, 105)'; // Set back to the default orange color
@@ -48,6 +52,7 @@
             } else if (isRed) {
               // Avoid having multiple slots selected
               if (selectedSlot) {
+                messageDiv.classList.add('ovisible');
                 selectedSlot.classList.remove('look');
                 if (selectedSlot.style.backgroundColor === 'rgb(191, 101, 62)') { // If the already selected slot is orange (pending)
                     selectedSlot.style.backgroundColor = 'rgb(255, 151, 105)'; // Set back to the default orange color
@@ -56,6 +61,7 @@
                     slot.style.backgroundColor = 'rgb(253, 96, 96)'; // Set back to the default red color
                 }
             }
+            messageDiv.classList.add('ovisible');
             verDiv.style.display = 'block';
                 // Remove 'visible' class and add it back to restart the animation
                 verDiv.classList.remove('ovisible');
@@ -71,6 +77,7 @@
     
             } else if (isRedSelected) { // Based on color, it deletes the "look" class if a selected red is clicked
                 if (slot.classList.contains('look')) {
+                    messageDiv.classList.add('ovisible');
                     verDiv.classList.add('ovisible');
                     slot.classList.remove('look');
                     slot.style.backgroundColor = 'rgb(253, 96, 96)'; // Set back to the default red color
@@ -79,6 +86,7 @@
             } else {
               // Toggle the 'selected' class and change the background color accordingly
               if (slot.classList.contains('selected')) {
+                messageDiv.classList.add('ovisible');
                 verDiv.classList.add('ovisible');
                 slot.classList.remove('selected');
                 slot.style.backgroundColor = ''; // Set back to the default color
@@ -92,6 +100,7 @@
                     }
                 }
               } else {
+                messageDiv.classList.add('ovisible');
                 verDiv.classList.add('ovisible');
                 slot.classList.add('selected');
                 slot.style.backgroundColor = '#5fc175'; // Set to green when selected
