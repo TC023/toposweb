@@ -26,8 +26,9 @@
 		$isAdmin = FALSE;
 	}
   $isAdmin = 1;
-	
-?> 
+  
+  Database::disconnect();
+?>
 <div class="navbar">
   <a href="#">INICIO</a>
   <a href="liga.php">EQUIPOS & TORNEOS</a>
@@ -167,11 +168,9 @@
     <h2 class="titulo">Confirmar o eliminar reservación</h2>
     <p class="texto">Porfavor corrobora la información antes de continuar</p>
     <div class="adminContainer-info">
-      <div class="adminizquierda">
-      <p><b>Nombre:</b> {{nombre}}<br><b>Teléfono:</b> {{telefono}}<br>
-        <b>Correo:</b> {{correo}}
-      </p>
-      </div>
+    <div class="adminizquierda">
+</div>
+
       <div class="adminderecha">
         <p><b id="savedDate"></b><br></p>
         <p id="savedHours"></p>
@@ -180,11 +179,11 @@
 
     <div class="adminContainer-botones">
         <div class="confirmar">
-            <button>Confirmar</button>     
+            <a>Confirmar</a>     
         </div>
         
         <div class="eliminar">
-            <button>Eliminar</button>     
+            <a id="danger">Eliminar</a>     
         </div>      
     </div>
 

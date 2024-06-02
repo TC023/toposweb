@@ -29,27 +29,22 @@ function toggleAdminDisplay() {
         calendarSection.classList.add('visible');
       }
     }
-
-    function collectUserData() {
-      // Get the user input values from the form fields
-      var userName = document.getElementById('name').value;
-      var userPhone = document.getElementById('phone').value;
-      var userEmail = document.getElementById('email').value;
-    
-      // Update the confirmation section with the user input values
-      var confirmationSection = document.querySelector('.contenedor-step3 .izquierda-step3');
-      confirmationSection.innerHTML = `
-        <p><b>Nombre:</b> ${userName}<br>
-        <b>Teléfono:</b> ${userPhone}<br>
-        <b>Correo:</b> ${userEmail}
-        </p>
-      `;
-    
-      // You can also collect and display the selected hours here
-      // ...
+    function deleteBooking() {
+      const id = {id: currentSlotId};
+  fetch('deleteBooking.php', { // Change the URL to your new PHP script
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json', // Set the content type to application/json
+    },
+    body: JSON.stringify(id), // Send the ID as JSON data
+  })
+  .then(response => response.json()) // Parse the JSON response
+  .catch(error => console.error('Error fetching data:', error));
     }
 
 // Asegúrate de que esta función se llame cuando se haga clic en el botón "Seleccionar"
 document.getElementById('ver-button').addEventListener('click', toggleAdminDisplay);
 // Asegúrate de que esta función se llame cuando se haga clic en el botón "atras"
 document.getElementById('atras-button').addEventListener('click', prevAdminCalendar);
+// Asegúrate de que esta función se llame cuando se haga clic en el botón "danger"
+document.getElementById('danger').addEventListener('click', deleteBooking);

@@ -1,3 +1,31 @@
+let currentSlotId;
+function sendId(id_reserva) {
+  const id = {id: id_reserva};
+  fetch('fetch_data.php', { // Change the URL to your new PHP script
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded', // Change the content type
+    },
+    body: `id=${id_reserva}`, // Send the ID as form data
+  })
+  .then(response => response.json()) // Parse the JSON response
+  .then(data => {
+    console.log(data)
+    // Now that you have your data, find the DOM element you want to update
+    const adminLeft = document.querySelector('.adminizquierda');
+
+    // Update the DOM element with the new data
+    if (data) {
+      adminLeft.innerHTML = `<p><b>Nombre:</b> ${data.nombre}<br><b>Teléfono:</b> ${data.num}<br><b>Correo:</b> ${data.correo}</p>`;
+    } else {
+      adminLeft.innerHTML = '<p>No data found.</p>';
+    }
+    const adminDelete = document.querySelector('.eliminar')
+    adminDelete.innerHTML = `<a id="danger"href="deleteBooking.php?id=${id_reserva}">Eliminar</a> `
+  })
+  .catch(error => console.error('Error fetching data:', error));
+}
+
   // Initialize an array to store selected hours
   let selectedHours = [];
         const timeSlots = document.querySelectorAll('#time-slots li');
@@ -39,7 +67,8 @@
             slot.classList.add('look');
             slot.style.backgroundColor = 'rgb(191, 101, 62)'; // Set to darker orange when selected
             selectedSlot = slot; // Update the currently selected slot
-
+            currentSlotId = parseInt(slot.id)
+            sendId(parseInt(slot.id))
             } else if (isOrangeSelected) { // Based on color, it deletes the "look" class if a selected orange is clicked
                 if (slot.classList.contains('look')) {
                     messageDiv.classList.add('ovisible');
@@ -73,7 +102,8 @@
                 slot.classList.add('look');
                 slot.style.backgroundColor = 'rgb(142, 48, 48)'; // Set to darker red when selected
                 selectedSlot = slot; // Update the currently selected slot
-    
+                currentSlotId = parseInt(slot.id)
+                sendId(parseInt(slot.id))
             } else if (isRedSelected) { // Based on color, it deletes the "look" class if a selected red is clicked
                 if (slot.classList.contains('look')) {
                     messageDiv.classList.add('ovisible');

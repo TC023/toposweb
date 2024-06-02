@@ -10,15 +10,22 @@ let fullDateString = null;
 // Function to color the hour slots for a specific date
 function colorSlotsForDate(date, pendienteReservations, ocupadoReservations) {
   const timeSlots = document.querySelectorAll('#time-slots li');
+  
   timeSlots.forEach(slot => {
     // Clear any previous coloring
     slot.style.backgroundColor = '';
     
     const slotHour = slot.textContent;
+    
     if (isReservationForDate(date, slotHour, pendienteReservations)) {
       slot.style.backgroundColor = '#ff9769';
+      slot.id = (String(classAdder(date, slotHour, pendienteReservations)))
     } else if (isReservationForDate(date, slotHour, ocupadoReservations)) {
       slot.style.backgroundColor = '#fd6060';
+      slot.id = (String(classAdder(date, slotHour, ocupadoReservations)))
+    }
+    else {
+      slot.id = null
     }
   });
 }
@@ -28,7 +35,7 @@ function isReservationForDate(date, hour, reservations) {
   const selectedDate = new Date(date + 'T00:00:00'); // Add 'T00:00:00' to ensure correct parsing
 
   return reservations.some(reservation => {
-    const reservationDate = new Date(reservation);
+    const reservationDate = new Date(reservation[0]);
     const reservationHour = reservationDate.getHours().toString().padStart(2, '0');
     const reservationMinutes = reservationDate.getMinutes().toString().padStart(2, '0');
     const reservationTime = reservationHour + ':' + reservationMinutes;
@@ -40,6 +47,25 @@ function isReservationForDate(date, hour, reservations) {
       reservationTime === hour
     );
   });
+}
+
+// Function to check if a reservation exists for the given date and hour
+function classAdder(date, hour, reservations) {
+  const selectedDate = new Date(date + 'T00:00:00'); // Add 'T00:00:00' to ensure correct parsing
+
+  const foundReservation = reservations.find(reservation => {
+    const reservationDate = new Date(reservation[0]);
+    const reservationHour = reservationDate.getHours().toString().padStart(2, '0');
+    const reservationMinutes = reservationDate.getMinutes().toString().padStart(2, '0');
+    const reservationTime = reservationHour + ':' + reservationMinutes;
+    return reservationDate.getFullYear() === selectedDate.getFullYear() &&
+           reservationDate.getMonth() === selectedDate.getMonth() &&
+           reservationDate.getDate() === selectedDate.getDate() &&
+           reservationTime === hour;
+  });
+
+  // If a reservation is found, return its ID; otherwise, return null or another appropriate value
+  return foundReservation ? foundReservation[1] : null;
 }
 
 

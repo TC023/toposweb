@@ -17,9 +17,6 @@ function collectUserData() {
       <b>Correo:</b> ${userEmail}
       </p>
     `;
-  
-    // You can also collect and display the selected hours here
-    // ...
   }
 
 document.getElementById('button-step3').addEventListener('click', function() {

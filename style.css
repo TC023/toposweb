@@ -703,21 +703,20 @@ background-color: #454545;
   margin-top: 30px; /* Add space above the buttons */
 }
 
-.adminContainer-botones button {
-  width: 90px;
-  height: 40px;
+.adminContainer-botones a {
+  padding: 12px 24px;
   font-size: 16px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.confirmar button {
+.confirmar a {
   background-color: #278261;
   color: white;
 }
 
-.eliminar button {
+#danger {
   background-color: #BF3535;
   color: white;
 }
