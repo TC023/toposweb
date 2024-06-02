@@ -179,7 +179,7 @@
 
     <div class="adminContainer-botones">
         <div class="confirmar">
-            <a>Confirmar</a>     
+            <a id="payconfirm">Confirmar</a>     
         </div>
         
         <div class="eliminar">

@@ -22,6 +22,8 @@ function sendId(id_reserva) {
     }
     const adminDelete = document.querySelector('.eliminar')
     adminDelete.innerHTML = `<a id="danger"href="deleteBooking.php?id=${id_reserva}">Eliminar</a> `
+    const adminConfirm = document.querySelector('.confirmar')
+    adminConfirm.innerHTML = `<a id="payconfirm"href="confirmBooking.php?id=${id_reserva}">Confirmar</a> `
   })
   .catch(error => console.error('Error fetching data:', error));
 }
