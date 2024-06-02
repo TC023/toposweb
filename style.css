@@ -449,47 +449,31 @@ background-color: #8abaed;
 
 /* Form styles */
 .form-section {
-  margin-bottom: 100px;
-}
-.form-container {
-    margin-top: 3%;
-margin-left: 32%;
+  width: 600px;
+  margin: 0 auto;
   background-color: #fff;
-  padding: 30px; /* Aumento del relleno para hacer el formulario más grande */
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 35%; /* Ancho aumentado para hacer el formulario más grande */
-  height: 27.23%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.checkmark-icon {
-margin-top: 1px;
-display: block;
-text-align: center;
-margin-bottom: 4px;
-margin-left: 1.5%;
-}
-.checkmark-icon img {
-width: 60px; /* Aumento del tamaño de la imagen del icono de verificación */
-height: auto;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
 
 .form-header {
 font-size: 24px;
 font-weight: 700;
 text-align: center;
-margin-bottom: 20px; /* Aumento del margen para hacer el título más grande */
+margin-top: 8px;
+margin-bottom: 32px; 
 }
 .form-field {
 display: flex;
 align-items: center; /* Asegura alineación vertical */
 width: 100%;
-margin-bottom: 10px;
+margin-bottom: 12px;
 }
 .form-field label {
-color: #333;
 margin-left: 10px;
 margin-right: 5px;
 font-size: 18px;
@@ -507,16 +491,20 @@ margin-right: auto; /* Empuja el campo de entrada hacia la etiqueta */
 }
 
 /* The mf next button */
+.next-button {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
 #next-button {
   background-color: #000;
   color: #fff;
   border: none;
   border-radius: 3px;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 500;
   padding: 12px 24px;
   cursor: pointer;
-  margin-top: 30px;
+  transition: background-color 0.3s;
 }
 #next-button:hover {
 background-color: #454545;
@@ -572,11 +560,12 @@ background-color: #454545;
   color: #fff;
   border: none;
   border-radius: 3px;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 500;
   padding: 12px 24px;
   cursor: pointer;
   margin-top: 30px;
+  transition: background-color 0.3s;
 }
 
 #button-step3:hover {
@@ -620,6 +609,7 @@ background-color: #454545;
   padding: 12px 24px;
   cursor: pointer;
   margin-top: 30px;
+  transition: background-color 0.3s;
 }
 
 #boton-step4:hover {

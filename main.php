@@ -106,11 +106,9 @@
 <div class="form-section" style="display: none;">
 <form id="reservation-form" class="form-container">
 <a id="back-button" class="atras-button">
-      <img class="atras" src="https://static.vecteezy.com/system/resources/previews/000/589/654/non_2x/vector-back-icon.jpg" alt="Atrás">
+  <img class="atras" src="https://static.vecteezy.com/system/resources/previews/000/589/654/non_2x/vector-back-icon.jpg" alt="Atrás">
 </a>
-  <div class="checkmark-icon">
-    <img class="icono" src="https://i.imgur.com/7qPMdhy.png">
-  </div>
+  <img class="icono" src="https://i.imgur.com/7qPMdhy.png">
   <div class="form-header">
     Datos del responsable de la reserva
   </div>
@@ -126,7 +124,9 @@
     <label for="email">Correo:</label>
     <input type="email" id="email" name="email">
   </div>
+  <div class="next-button">
   <a id="next-button">Siguiente</a>
+</div>
 </form>
 </div>
 <!-- Data confirm | Step 3 -->

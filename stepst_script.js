@@ -41,7 +41,7 @@ function toggleFormDisplay() {
     // Mostrar el formulario de reserva
     var formContainer = document.querySelector('.form-section');
     if (formContainer) {
-      formContainer.style.display = 'flex';
+      formContainer.style.display = 'block';
       formContainer.classList.add('visible');
     }
   }
@@ -61,6 +61,14 @@ function toggleFormDisplay() {
 
   // Función para ocultar la sección del form y mostrar la ventana de confirmación
 function toggleStep3Display() {
+  var userName = document.getElementById('name').value;
+  var userPhone = document.getElementById('phone').value;
+  var userEmail = document.getElementById('email').value;
+  if (userName == '' || isNaN(parseInt(userPhone)) || userEmail.indexOf('@') === -1 || userEmail.indexOf('.com') === -1) {
+
+  }
+  else {
+  nextStep();
   // Ocultar la sección del form
   var formSection = document.querySelector('.form-section');
   if (formSection) {
@@ -72,6 +80,7 @@ function toggleStep3Display() {
   if (step3) {
     step3.style.display = 'block';
     step3.classList.add('visible');
+  }
   }
 }
 
@@ -102,7 +111,7 @@ function reloadPage() {
   // window.location.href = 'main.html';
 }
 
-  // Función para ocultar la sección de confirmación y mostrar la ventana del forms
+  // Función para ocultar la sección de confirmación y mostrar la ventana del form
   function backtoggleStep3Display() {
     // Ocultar la ventana de confirmación
     var step3 = document.querySelector('.contenedor-step3');
@@ -154,8 +163,6 @@ function backtoggleFormDisplay() {
 document.getElementById('select-button').addEventListener('click', toggleFormDisplay);
   // Asegúrate de que esta función se llame cuando se haga clic en el botón "Siguiente"
   document.getElementById('next-button').addEventListener('click', toggleStep3Display);
-  // Asegúrate de que esta función se llame cuando se haga clic en el botón "Siguiente"
-  document.getElementById('next-button').addEventListener('click', nextStep);
   // Asegúrate de que esta función se llame cuando se haga clic en el botón "Confirmar"
   document.getElementById('button-step3').addEventListener('click', toggleStep4Display);
   // Asegúrate de que esta función se llame cuando se haga clic en el botón "Confirmar"
