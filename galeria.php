@@ -68,13 +68,13 @@
     const arrays = [col0, col1, col2, col3];
     const imagesArray = <?php echo json_encode($arr); ?>;
     imagesArray.forEach((item, i) => {
-        var whole = document.createElement('div')
-        whole.setAttribute('class', 'todo')
+        var whole = document.createElement('div');
+        whole.setAttribute('class', 'todo');
         var container = document.createElement('div');
         container.setAttribute('class', 'img-hover-zoom')
         const imag = document.createElement('img');
         imag.setAttribute('src', 'uploads/' + imagesArray[i][0]);
-        imag.setAttribute('width', '100%')
+        imag.setAttribute('width', '100%');
         container.appendChild(imag);
 
         const desc = document.createElement('div');
