@@ -20,10 +20,38 @@ function sendId(id_reserva) {
     } else {
       adminLeft.innerHTML = '<p>No data found.</p>';
     }
+    const adminButtons = document.querySelector('.adminContainer-botones')
+    adminButtons.innerHTML = `<div class="confirmar"></div><div class="eliminar"></div> `
     const adminDelete = document.querySelector('.eliminar')
     adminDelete.innerHTML = `<a id="danger"href="deleteBooking.php?id=${id_reserva}">Eliminar</a> `
     const adminConfirm = document.querySelector('.confirmar')
     adminConfirm.innerHTML = `<a id="payconfirm"href="confirmBooking.php?id=${id_reserva}">Confirmar</a> `
+  })
+  .catch(error => console.error('Error fetching data:', error));
+}
+function sendredId(id_reserva) {
+  const id = {id: id_reserva};
+  fetch('fetch_data.php', { // Change the URL to your new PHP script
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded', // Change the content type
+    },
+    body: `id=${id_reserva}`, // Send the ID as form data
+  })
+  .then(response => response.json()) // Parse the JSON response
+  .then(data => {
+    console.log(data)
+    // Now that you have your data, find the DOM element you want to update
+    const adminLeft = document.querySelector('.adminizquierda');
+
+    // Update the DOM element with the new data
+    if (data) {
+      adminLeft.innerHTML = `<p><b>Nombre:</b> ${data.nombre}<br><b>Teléfono:</b> ${data.num}<br><b>Correo:</b> ${data.correo}</p>`;
+    } else {
+      adminLeft.innerHTML = '<p>No data found.</p>';
+    }
+    const adminButtons = document.querySelector('.adminContainer-botones')
+    adminButtons.innerHTML = `<div class="eliminar"> <a id="danger"href="deleteBooking.php?id=${id_reserva}">Eliminar</a> </div> `
   })
   .catch(error => console.error('Error fetching data:', error));
 }
@@ -105,7 +133,7 @@ function sendId(id_reserva) {
                 slot.style.backgroundColor = 'rgb(142, 48, 48)'; // Set to darker red when selected
                 selectedSlot = slot; // Update the currently selected slot
                 currentSlotId = parseInt(slot.id)
-                sendId(parseInt(slot.id))
+                sendredId(parseInt(slot.id))
             } else if (isRedSelected) { // Based on color, it deletes the "look" class if a selected red is clicked
                 if (slot.classList.contains('look')) {
                     messageDiv.classList.add('ovisible');

@@ -186,7 +186,6 @@
             <a id="danger">Eliminar</a>     
         </div>      
     </div>
-
   </div>
 
 <!-- Steps Bar Container -->
