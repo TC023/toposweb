@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Agregar Evento</title>
+</head>
+
+
+<body>
+    <h2>Formulario para Agregar Evento</h2>
+    <form action="procesar_formulario.php" method="post" enctype="multipart/form-data">
+        <label for="fecha">Fecha del Evento:</label>
+        <input type="date" id="fecha" name="fecha" required><br><br>
+
+        <label for="hora">Hora del Evento:</label>
+        <input type="time" id="hora" name="hora" required><br><br>
+
+        <label for="titulo">Título del Evento:</label>
+        <input type="text" id="titulo" name="titulo" required><br><br>
+
+        <label for="descripcion">Descripción:</label><br>
+        <textarea id="descripcion" name="descripcion" rows="4" cols="50" required></textarea><br><br>
+
+        <label for="responsable">Nombre del Responsable:</label>
+        <input type="text" id="responsable" name="responsable" required><br><br>
+        
+        <label for="imagen">Imagen del Evento:</label>
+        <input type="file" id="imagen" name="imagen" required><br><br>
+
+        <input type="submit" value="Agregar Evento">
+    </form>
+</body>
+</html>

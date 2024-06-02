@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Reserva</title>
+</head>
+<body>
+    <h2>Formulario de Reserva de Cancha de Fútbol</h2>
+    <form action="procesar_reserva.php" method="POST">
+        <label for="responsable">Responsable:</label><br>
+        <input type="text" id="responsable" name="responsable" required><br>
+
+        <label for="telefono">Teléfono:</label><br>
+        <input type="tel" id="telefono" name="telefono" required><br>
+
+        <label for="fecha">Fecha:</label><br>
+        <input type="date" id="fecha" name="fecha" required><br>
+
+        <label for="hora">Hora:</label><br>
+        <input type="time" id="hora" name="hora" required><br>
+
+        <label for="duracion">Duración (en horas):</label><br>
+        <input type="number" id="duracion" name="duracion" min="1" required><br>
+
+        <label for="correo">Correo:</label><br>
+        <input type="email" id="correo" name="correo" required><br>
+
+        <label for="estado">Estado:</label><br>
+        <select id="estado" name="estado" required>
+            <option value="pendiente">Pendiente</option>
+            <option value="confirmado">Confirmado</option>
+        </select><br>
+
+        <label for="admin">Admin Responsable:</label><br>
+        <input type="text" id="admin" name="admin" required><br>
+
+        <input type="submit" value="Agregar Reserva">
+    </form>
+</body>
+</html>

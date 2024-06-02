@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload with Preview</title>
+    <style>
+        #preview {
+            max-width: 300px;
+            max-height: 300px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form action="upload.php" method="post" enctype="multipart/form-data">
+        <input type="file" name="fileToUpload" id="imageUpload" accept="image/*" onchange="previewImage()">
+        <button type="submit" name="submit">Upload Image</button>
+    </form>
+    <div id="imagePreview">
+        <img id="preview" src="preview.png" alt="Image Preview">
+    </div>
+
+    <script>
+        function previewImage() {
+            var preview = document.querySelector('#preview');
+            var file = document.querySelector('input[type=file]').files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function () {
+                preview.src = reader.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+            }
+        }
+    </script>
+    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSQLj7kwAq7KIKek0mhB-tGExo_QBdlk1626Ehtx_KeDkEtJ0nxr5Z-muFpwjr_CVtwAFtIxLkbEYiO/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"></iframe></body>
+</html>
