@@ -83,28 +83,30 @@
             font-size: 5px;
         }
 
-        .e1, .e2, .e3, .e4, .e5, .e6, .e7, .e8, .e9, .e10, .e11, .e12,  .e15 {
+        .e1, .e2, .e3, .e4, .e5, .e6, .e7, .e8, .e9, .e10, .e11, .e12, .e13, .e14, .e15 {
             position: absolute;
         }
 
-        .e1 { top: 175px; left: 280px; }
-        .e2 { top: 245px; left: 280px; }
-        .e3 { top: 335px; left: 280px; }
-        .e4 { top: 405px; left: 280px; }
-        .e5 { top: 175px; left: 950px; }
-        .e6 { top: 255px; left: 950px; }
-        .e7 { top: 345px; left: 950px; }
-        .e8 { top: 415px; left: 950px; }
-        .e9 { top: 215px; left: 450px; }
-        .e10 { top: 370px; left: 450px; }
-        .e11 { top: 225px; left: 790px; }
-        .e12 { top: 380px; left: 790px; }
-        .e15 { top: 300px; left: 630px; }
+        .e1 {top:155px; left:330px; }
+        .e2 { top:245px; left:330px; }
+        .e3 { top:355px; left:330px; }
+        .e4 { top:445px; left:330px; }
+        .e5 { top:155px; left:940px; }
+        .e6 { top:245px; left:940px; }
+        .e7 { top:355px; left:940px; }
+        .e8 { top:445px; left:940px; }
+        .e9 {top:215px; left:480px; }
+        .e10 { top:400px; left:480px; }
+        .e11 { top:215px; left:780px; }
+        .e12 { top:400px; left:780px; }
+        .e13 { top:260px; left:630px;; }
+        .e14 { top:350px; left:630px; }
+        .e15 { top:100px; left:680px; }
 
 		.nombres{
 			position: absolute;
-			left: -235px;
-			top: -165px;
+			left: -245px;
+			top: -125px;
 		}
 
         .ab {
@@ -129,8 +131,8 @@
 
         .trofeo {
             position: absolute;
-			top: 50px;
-			left: 430px;
+			top: -40px;
+			left: 360px;
             width: 60px;
         }
 		/* ----------------------------------------------------------------- */
@@ -314,7 +316,6 @@ button {
         echo '
         <div class="container">
             <div class="header">
-                <button class="back-button"><img class="bbutton" src="atras.png"></button>
                 <h1 class="me">'.$row['nombre_torneo'].'</h1>
             </div>
             <div class="bracket">
@@ -359,74 +360,163 @@ button {
 				</div>
    </div>
    <div class="contenido">
-     <div class="formulario">
-		 <div class="campo">
-			 <label for="fase-torneo">Selecciona la fase:</label>
-			 <select id="fase-torneo" name="fase-torneo">
-				 <option value="opcion1">Cuartos de final</option>
-				 <option value="opcion2">Octavos de Final</option>
-				 <option value="opcion4">Semifinal</option>
-				 <option value="opcion5">Final</option>
-				</select>
-			</div>
-			<div class="campo">
-				<label for="fase-torneo">Selecciona el enfrentamiento:</label>
-				<select id="fase-torneo" name="fase-torneo">
-					<option value="opcion1">Algo vs Algo</option>
-					<option value="opcion2">Algo vs Algo</option>
-					<option value="opcion3">Algo vs Algo</option>
-					<option value="opcion4">Algo vs Algo</option>
-					<option value="opcion5">Algo vs Algo</option>
-				</select>
-       </div>
-       <div class="campo">
-         <label for="goles-equipo1">Cantidad de goles del equipo 1:</label>
-         <textarea id="goles-equipo1" name="goles-equipo1" onkeyup="validarNumeros(this)"></textarea>
-		</div>
-		<div class="campo">
-			<label for="goles-equipo2">Cantidad de goles del equipo 2:</label>
-			<textarea id="goles-equipo2" name="goles-equipo2" onkeyup="validarNumeros(this)"></textarea>
-		</div>
-		<div class="campo">
-			<label for="fecha">Selecciona la fecha:</label>
-			<input type="text" id="datepicker">
-		</div>
-		<div class="campo">
-			<label for="hora">Selecciona la hora:</label>
-			<select id="hora" name="hora">
-				<option value="08:00">8:00 am</option>
-				<option value="09:00">9:00 am</option>
-				<option value="10:00">10:00 am</option>
-				<option value="11:00">11:00 am</option>
-				<option value="08:00">12:00 am</option>
-				<option value="09:00">1:00 pm</option>
-				<option value="10:00">2:00 pm</option>
-				<option value="11:00">3:00 pm</option>
-				<option value="08:00">4:00 pm</option>
-				<option value="09:00">5:00 pm</option>
-				<option value="10:00">6:00 pm</option>
-				<option value="11:00">7:00 pm</option>
-				<option value="08:00">8:00 pm</option>
-				<option value="09:00">9:00 pm</option>
-			</select>
-		</div>
-		<div class="boton-wrapper">
-			<button>Guardar</button>
-		</div>
-	</div>
-</div>
-</div>
+   <div class="formulario">
+    <div class="campo">
+        <label for="fase-torneo">Selecciona la fase:</label>
+        <select id="fase-torneo" name="fase-torneo">
+            <option value="opcion1">Cuartos de final</option>
+            <option value="opcion2">Octavos de Final</option>
+            <option value="opcion4">Semifinal</option>
+            <option value="opcion5">Final</option>
+        </select>
+    </div>
+    <div class="campo">
+        <label for="enfrentamiento-torneo">Selecciona el enfrentamiento:</label>
+        <select id="enfrentamiento-torneo" name="enfrentamiento-torneo">
+            <option value="opcion1">Algo vs Algo</option>
+            <option value="opcion2">Algo vs Algo</option>
+            <option value="opcion3">Algo vs Algo</option>
+            <option value="opcion4">Algo vs Algo</option>
+            <option value="opcion5">Algo vs Algo</option>
+        </select>
+    </div>
+    <div class="campo">
+        <label for="goles-equipo1">Cantidad de goles del equipo 1:</label>
+        <textarea id="goles-equipo1" name="goles-equipo1" onkeyup="validarNumeros(this)"></textarea>
+    </div>
+    <div class="campo">
+        <label for="goles-equipo2">Cantidad de goles del equipo 2:</label>
+        <textarea id="goles-equipo2" name="goles-equipo2" onkeyup="validarNumeros(this)"></textarea>
+    </div>
+    <div class="campo">
+        <label for="fecha">Selecciona la fecha:</label>
+        <input type="text" id="datepicker" name="fecha">
+    </div>
+    <div class="campo">
+        <label for="hora">Selecciona la hora:</label>
+        <select id="hora" name="hora">
+            <option value="08:00">8:00 am</option>
+            <option value="09:00">9:00 am</option>
+            <option value="10:00">10:00 am</option>
+            <option value="11:00">11:00 am</option>
+            <option value="12:00">12:00 pm</option>
+            <option value="13:00">1:00 pm</option>
+            <option value="14:00">2:00 pm</option>
+            <option value="15:00">3:00 pm</option>
+            <option value="16:00">4:00 pm</option>
+            <option value="17:00">5:00 pm</option>
+            <option value="18:00">6:00 pm</option>
+            <option value="19:00">7:00 pm</option>
+            <option value="20:00">8:00 pm</option>
+            <option value="21:00">9:00 pm</option>
+        </select>
+    </div>
+    <div class="boton-wrapper">
+        <button type="submit">Guardar</button>
+    </div>
+</div></div>
 </body>
 
 <script>
-function mostrar(id) {
+
+	
+	document.addEventListener('DOMContentLoaded', function() {
+            var datepicker = document.getElementById('datepicker');
+            datepicker.disabled = true;
+
+            var faseTorneo = document.getElementById('fase-torneo');
+            var enfrentamientoTorneo = document.getElementById('enfrentamiento-torneo');
+            var golesEquipo1 = document.getElementById('goles-equipo1');
+            var golesEquipo2 = document.getElementById('goles-equipo2');
+            var fecha = document.getElementById('datepicker');
+            var hora = document.getElementById('hora');
+
+            enfrentamientoTorneo.disabled = true;
+            golesEquipo1.disabled = true;
+            golesEquipo2.disabled = true;
+            fecha.disabled = true;
+            hora.disabled = true;
+
+            faseTorneo.addEventListener('change', function() {
+                if (faseTorneo.value) {
+                    enfrentamientoTorneo.disabled = false;
+                } else {
+                    enfrentamientoTorneo.disabled = true;
+                    enfrentamientoTorneo.value = '';
+                    golesEquipo1.disabled = true;
+                    golesEquipo1.value = '';
+                    golesEquipo2.disabled = true;
+                    golesEquipo2.value = '';
+                    fecha.disabled = true;
+                    fecha.value = '';
+                    hora.disabled = true;
+                    hora.value = '';
+                }
+            });
+
+            enfrentamientoTorneo.addEventListener('change', function() {
+                if (enfrentamientoTorneo.value) {
+                    golesEquipo1.disabled = false;
+                } else {
+                    golesEquipo1.disabled = true;
+                    golesEquipo1.value = '';
+                    golesEquipo2.disabled = true;
+                    golesEquipo2.value = '';
+                    fecha.disabled = true;
+                    fecha.value = '';
+                    hora.disabled = true;
+                    hora.value = '';
+                }
+            });
+
+            golesEquipo1.addEventListener('keyup', function() {
+                if (golesEquipo1.value) {
+                    golesEquipo2.disabled = false;
+                } else {
+                    golesEquipo2.disabled = true;
+                    golesEquipo2.value = '';
+                    fecha.disabled = true;
+                    fecha.value = '';
+                    hora.disabled = true;
+                    hora.value = '';
+                }
+            });
+
+            golesEquipo2.addEventListener('keyup', function() {
+                if (golesEquipo2.value) {
+                    fecha.disabled = false;
+                } else {
+                    fecha.disabled = true;
+                    fecha.value = '';
+                    hora.disabled = true;
+                    hora.value = '';
+                }
+            });
+
+            fecha.addEventListener('change', function() {
+                if (fecha.value) {
+                    hora.disabled = false;
+                } else {
+                    hora.disabled = true;
+                    hora.value = '';
+                }
+            });
+
+            window.validarNumeros = function(elemento) {
+                var valor = elemento.value;
+                if (!/^\d*$/.test(valor)) {
+                    elemento.value = valor.replace(/[^\d]/g, '');
+                }
+            };
+        });	
+	function mostrar(id) {
     document.querySelector('.contenedor_pop').style.display = 'block';
 	document.querySelector('.xdlol').style.display = 'block';
 	var divElement = document.querySelector('.titulo');
 	var h2Element = divElement.querySelector('h2');
 	h2Element.textContent = 'Añadir un partido al torneo: '+id;
 	<?php 
-	
+		$sqlAyuda = "SELECT * FROM ";
 	?>
 }
 
