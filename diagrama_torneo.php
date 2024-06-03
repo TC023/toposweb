@@ -146,7 +146,7 @@ h2, p {
 }
 
 
-.contenedor_pop {
+#contenedor_pop {
  display: none;
  overflow: auto;
  position: fixed;
@@ -155,11 +155,9 @@ h2, p {
  height: auto;
  margin: 0 auto;
  background-color: #fff;
- /* background-color: rgba(255, 255, 255, 0); */
  border-radius: 5px;
  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
  padding: 30px;
- /* backdrop-filter: blur(5px); */
 }
 
 .top {
@@ -343,80 +341,117 @@ button {
 				<button class="agregar" onclick="mostrar('.$row['id_torneo'].')">Agregar Partido</button>
 			</div>
 		</div>';
+		// ----------------------------DESEENME SUERTE NOMAMEN AYUDA----------------------------
+	}
+// POR CADA TORNEO, MUY IMPORTANTE, NO SE TE OLVIDE ALONSO POR EL AMOR DE DIOS:
+	foreach ($pdo->query($sql) as $row) {
+		$arrgh = [];
+		// POR CADA FASE A JUGAR:
+		for ($i = 1; $i < 4; $i++) {	
+			$sqlAyuda = "SELECT DISTINCT id_fase 
+			FROM reto_fasesequipo a 
+			WHERE id_fase = ".$i." 
+			  AND a.id_equipo NOT IN (SELECT id_equipo FROM reto_fasesequipo WHERE id_fase = ".($i+1).")
+			  AND (SELECT COUNT(subfase) FROM reto_fasesequipo WHERE id_fase = ".($i).") >= 2
+			  AND a.id_torneo = ".$row["id_torneo"].";
+			";
+			$stmt = $pdo->query($sqlAyuda);
+			$result = $stmt->fetch(PDO::FETCH_ASSOC);
+			if ($result) {
+				$arrgh[] = $result["id_fase"];
+				
+			}
+
+			
+		}
+		$idtostr = [
+			1 => "Cuartos de final",
+			2 => "Semifinales",
+			3 => "Final",
+		];
+		echo '
+		<div class="xdlol"></div> 
+		<div id = "contenedor_pop" class="contenedor_pop'.$row["id_torneo"].'">
+		<div class="top">
+			<div class="atras" onclick="atras('.$row['id_torneo'].')">
+				<button class="atras-button">
+					<img class="atras" src="https://static.vecteezy.com/system/resources/previews/000/589/654/non_2x/vector-back-icon.jpg" alt="Atrás">
+				</button>
+			</div>
+			<div class="titulo">
+				<h2>Añadir partido a '.$row["nombre_torneo"].'</h2>
+			</div>
+		</div>
+		<div class="contenido">
+			<div class="formulario">
+				<div class="campo">
+					<label for="fase-torneo">Selecciona la fase:</label>
+						<select id="fase-torneo" name="fase-torneo">
+						<option value="" disabled selected>Selecciona una opción</option>
+						';
+
+						$count = 0;
+						foreach ($arrgh as $opt) {
+							$count = $count+1;
+							echo '<option value="opcion'.$count.'">'.$idtostr[$opt].'</option>';
+						}
+						echo'
+						</select>
+				</div>
+				<div class="campo">
+					<label for="enfrentamiento-torneo">Selecciona el enfrentamiento:</label>
+						<select id="enfrentamiento-torneo" name="enfrentamiento-torneo">
+							<option value="" disabled selected>Selecciona una opción</option>
+							<!-- <option value="opcion1">Algo vs Algo1</option> -->
+						</select>
+				</div>
+				<div class="campo">
+					<label for="goles-equipo1">Cantidad de goles del equipo 1:</label>
+						<textarea id="goles-equipo1" name="goles-equipo1" onkeyup="validarNumeros(this)"></textarea>
+				</div>
+				<div class="campo">
+					<label for="goles-equipo2">Cantidad de goles del equipo 2:</label>
+						<textarea id="goles-equipo2" name="goles-equipo2" onkeyup="validarNumeros(this)"></textarea>
+				</div>
+				<div class="campo">
+					<label for="fecha">Selecciona la fecha:</label>
+					<input type="text" id="datepicker" name="fecha">
+				</div>
+				<div class="campo">
+					<label for="hora">Selecciona la hora:</label>
+						<select id="hora" name="hora">
+							<option value="" disabled selected>Selecciona una opción</option>
+							<option value="08:00">8:00 am</option>
+							<option value="09:00">9:00 am</option>
+							<option value="10:00">10:00 am</option>
+							<option value="11:00">11:00 am</option>
+							<option value="12:00">12:00 pm</option>
+							<option value="13:00">1:00 pm</option>
+							<option value="14:00">2:00 pm</option>
+							<option value="15:00">3:00 pm</option>
+							<option value="16:00">4:00 pm</option>
+							<option value="17:00">5:00 pm</option>
+							<option value="18:00">6:00 pm</option>
+							<option value="19:00">7:00 pm</option>
+							<option value="20:00">8:00 pm</option>
+							<option value="21:00">9:00 pm</option>
+						</select>
+				</div>
+				<div class="boton-wrapper">
+					<button type="submit">Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+		';
+	
 	}
 	?>
- <div class="xdlol">
-	 </div>
 	 
-	 <div class="contenedor_pop">
-		 <div class="top">
-			 <div class="atras">
-				 <button class="atras-button">
-					 <img class="atras" src="https://static.vecteezy.com/system/resources/previews/000/589/654/non_2x/vector-back-icon.jpg" alt="Atrás">
-					</button>
-				</div>
-				<div class="titulo">
-					<h2>Añadir partido a un torneo</h2>
-				</div>
-   </div>
-   <div class="contenido">
-   <div class="formulario">
-	<div class="campo">
-		<label for="fase-torneo">Selecciona la fase:</label>
-		<select id="fase-torneo" name="fase-torneo">
-			<option value="" disabled selected>Selecciona una opción</option>
-			<!-- <option value="opcion1">Cuartos de final</option> -->
-		</select>
-	</div>
-	<div class="campo">
-		<label for="enfrentamiento-torneo">Selecciona el enfrentamiento:</label>
-		<select id="enfrentamiento-torneo" name="enfrentamiento-torneo">
-			<option value="" disabled selected>Selecciona una opción</option>
-			<!-- <option value="opcion1">Algo vs Algo1</option> -->
-		</select>
-	</div>
-	<div class="campo">
-		<label for="goles-equipo1">Cantidad de goles del equipo 1:</label>
-		<textarea id="goles-equipo1" name="goles-equipo1" onkeyup="validarNumeros(this)"></textarea>
-	</div>
-	<div class="campo">
-		<label for="goles-equipo2">Cantidad de goles del equipo 2:</label>
-		<textarea id="goles-equipo2" name="goles-equipo2" onkeyup="validarNumeros(this)"></textarea>
-	</div>
-	<div class="campo">
-		<label for="fecha">Selecciona la fecha:</label>
-		<input type="text" id="datepicker" name="fecha">
-	</div>
-	<div class="campo">
-		<label for="hora">Selecciona la hora:</label>
-		<select id="hora" name="hora">
-			<option value="" disabled selected>Selecciona una opción</option>
-			<option value="08:00">8:00 am</option>
-			<option value="09:00">9:00 am</option>
-			<option value="10:00">10:00 am</option>
-			<option value="11:00">11:00 am</option>
-			<option value="12:00">12:00 pm</option>
-			<option value="13:00">1:00 pm</option>
-			<option value="14:00">2:00 pm</option>
-			<option value="15:00">3:00 pm</option>
-			<option value="16:00">4:00 pm</option>
-			<option value="17:00">5:00 pm</option>
-			<option value="18:00">6:00 pm</option>
-			<option value="19:00">7:00 pm</option>
-			<option value="20:00">8:00 pm</option>
-			<option value="21:00">9:00 pm</option>
-		</select>
-	</div>
-	<div class="boton-wrapper">
-		<button type="submit">Guardar</button>
-	</div>
-</div></div>
+
 </body>
 
 <script>
-
-	
-
 			var datepicker = document.getElementById('datepicker');
 			datepicker.disabled = true;
 
@@ -492,61 +527,28 @@ button {
 			};
 
 		function mostrar(id) {
-		document.querySelector('.contenedor_pop').style.display = 'block';
+		document.querySelector('.contenedor_pop'+id).style.display = 'block';
 		document.querySelector('.xdlol').style.display = 'block';
-		var divElement = document.querySelector('.titulo');
-		var h2Element = divElement.querySelector('h2');
-		h2Element.textContent = 'Añadir un partido al torneo: '+id;
 		console.log("huh");
+
+
+	}
 		
-		let idToStr = {
-					1: "Cuartos de final",
-					2: "Semifinal",
-					3: "Final"
-				};
-		// PUEDE Q SEA MALA IDEA, PERO VOY A GENERAR UN HTML NUEVO POR POPUP, DESÉNME SUERTE
+		function atras(id) {
+			console.log("hola?");
+			const fields = [faseTorneo, enfrentamientoTorneo, golesEquipo1, golesEquipo2, fecha, hora];
+			fields.forEach(field => {
+							field.value = '';
+							if (field.name != "fase-torneo") {
+								field.disabled = true;
+							}
+						});
+			document.querySelector('.contenedor_pop'+id).style.display = 'none';
+			document.querySelector('.xdlol').style.display = 'none';
 			<?php
-			$idPHP = 1;
-			$arrgh = array();
-			for ($i = 1; $i < 4; $i++) {	
-				$sqlAyuda = "SELECT DISTINCT id_fase 
-				FROM reto_fasesequipo a 
-				WHERE id_fase = ".$i." 
-				  AND a.id_equipo NOT IN (SELECT id_equipo FROM reto_fasesequipo WHERE id_fase = ".($i+1).")
-				  AND (SELECT COUNT(subfase) FROM reto_fasesequipo WHERE id_fase = ".($i).") >= 2;
-				";
-				$stmt = $pdo->query($sqlAyuda);
-				$result = $stmt->fetch(PDO::FETCH_ASSOC);
-				if ($result) {
-					$arrgh[] = $result["id_fase"];
-				}
-			}
+			$arrgh = [];
 			?>
-			var porJugar = <?php echo json_encode($arrgh); ?>;
-			var list = document.querySelector('#fase-torneo');
-			porJugar.forEach((item) => {
-				var option = document.createElement('option');
-				option.value = "opcion"+item; // Set the value attribute
-				option.textContent = idToStr[item]; // Set the text content inside the option element
-				list.appendChild(option);
-				console.log(item);
-			});
-
-
 		}
-
-document.querySelector('.atras').addEventListener('click', function() {
-	const fields = [faseTorneo, enfrentamientoTorneo, golesEquipo1, golesEquipo2, fecha, hora]
-	fields.forEach(field => {
-					field.value = '';
-					if (field.name != "fase-torneo") {
-						field.disabled = true;
-					}
-				});
-	document.querySelector('.contenedor_pop').style.display = 'none';
-	document.querySelector('.xdlol').style.display = 'none';
-	
-});
 
 
 </script>
