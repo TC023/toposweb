@@ -176,70 +176,90 @@ h2, p {
  padding: 30px;
 }
 
-.top {
+.contenedor_pop .top {
  display: flex;
  padding-bottom: 20px;
 }
 
-.titulo {
+.contenedor_pop .titulo {
  padding-top: 10px;
  padding-left: 10px;
  font-size: 16px;
 }
 
-.atras-button {
+.contenedor_pop .atras-button {
  width: 50px;
  height: 50px;
  background: none;
  border: none;
- position: absolute;
- top: 20px;
- left: 20px;
+ position: inherit;
+ /* top: 20px;
+ left: 20px; */
  cursor: pointer;
 }
 
-.atras {
- padding-left: 20px;
+.contenedor_pop .atras {
+ /* padding-left: 20px; */
  width: 30px;
  height: 30px;
 }
 
-.contenido {
+.contenedor_pop .contenido {
  display: flex;
  flex-direction: column;
 }
 
-.formulario {
+.contenedor_pop .formulario {
  width: 100%;
 }
 
-.campo {
+.contenedor_pop .campo {
  margin-bottom: 15px;
 }
 
-.campo label {
+.contenedor_pop .campo label {
  display: block;
  font-weight: 600;
  margin-bottom: 5px;
 }
 
-textarea, select, input[type="text"] {
+.contenedor_pop textarea, select, input[type="text"] {
  width: calc(100% - 22px);
  padding: 10px;
  border: 1px solid #ccc;
  border-radius: 5px;
 }
 
-textarea {
+.contenedor_pop textarea {
  resize: vertical;
 }
 
-.boton-wrapper {
+.contenedor_pop .boton-wrapper {
  display: flex;
  justify-content: center;
 }
 
-button {
+.contenedor_pop button {
+ background-color: #3D92B6;
+ color: white;
+ font-size: 16px;
+ border: none;
+ border-radius: 5px;
+ cursor: pointer;
+}
+
+.contenedor_pop .guarda {
+ background-color: #3D92B6;
+ color: white;
+ font-size: 16px;
+ margin-top: 15px;
+ border: none;
+ border-radius: 5px;
+ cursor: pointer;
+ padding: 15px;
+}
+
+.masTorneo {
  background-color: #3D92B6;
  color: white;
  font-size: 16px;
@@ -261,7 +281,158 @@ button {
 	backdrop-filter: blur(5px); /* Aplica desenfoque al fondo detrás del popup */
 }
 
-	</style>
+h2, p {
+  margin: 0 auto;
+  padding: 0px;
+ }
+ 
+ .contenedorTorneo {
+  display: none;
+  color: #0D3B66;
+  width: 800px;
+  height: auto;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin-top: 100px;
+  position: fixed ;
+  justify-content: center;
+}
+ 
+ .contenedorTorneo .top {
+  display: flex;
+  padding-bottom: 20px;
+ }
+ 
+ .contenedorTorneo .titulo {
+  padding-top: 10px;
+  padding-left: 10px;
+  font-size: 16px;
+ }
+ 
+ .contenedorTorneo .atras-button {
+  width: 50px;
+  height: 50px;
+  background: none;
+  /* border: none; */
+  position: inherit;
+  /* top: 20px; */
+  cursor: pointer;
+ }
+ 
+ .contenedorTorneo .atras {
+  /* padding-left: 20px; */
+  width: 30px;
+  height: 30px;
+ }
+
+ .contenedorTorneo .contenido {
+  display: flex;
+  flex-direction: column;
+ }
+ 
+ .contenedorTorneo .formulario {
+  width: 100%;
+ }
+ 
+ .contenedorTorneo .campo {
+  margin-bottom: 15px;
+ }
+ 
+ .contenedorTorneo .campo label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+ }
+ 
+ .contenedorTorneo textarea, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+ }
+ 
+ .contenedorTorneo textarea {
+  resize: vertical;
+ }
+ 
+ .contenedorTorneo .checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+ }
+ 
+ .contenedorTorneo .checkbox input {
+  margin-right: 10px;
+ }
+ 
+ .contenedorTorneo .boton-wrapper {
+  display: flex;
+  justify-content: center;
+ }
+ 
+ .contenedorTorneo button {
+  background-color: #3D92B6;
+  color: white;
+  width: 90px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+ }
+
+ .contenedorTorneo button {
+  background-color: #3D92B6;
+  color: white;
+  width: 90px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+ }
+
+	.containerSelect {
+		text-align: center;
+		margin: 0 auto;
+		}
+
+	.options {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	.option {
+		margin: 10px;
+	}
+	.option input[type="checkbox"] {
+		display: none;
+	}
+	.option label {
+		display: block;
+		background: #007bff;
+		color: white;
+		padding: 10px 20px;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+	.option input[type="checkbox"]:checked + label {
+		background: #28a745;
+	}
+	.option input[type="checkbox"]:disabled + label {
+		background: #6c757d;
+		cursor: not-allowed;
+	}
+	.counter {
+		margin-top: 20px;
+		margin-bottom: 20px;
+		font-size: 1.2em;
+	}
+
+</style>
 </head>
 
 <body>
@@ -347,7 +518,49 @@ foreach ($pdo->query($sqltorn) as $row) {
 	?>
 	<div class="xdlol"></div> 
 	<div class="contenedor_pop"></div>
-
+	<div class="contenedorTorneo">
+   <div class="top">
+       <button class="atras-button" onclick="atras()">
+         <img class="atras" src="https://static.vecteezy.com/system/resources/previews/000/589/654/non_2x/vector-back-icon.jpg" alt="Atrás">
+       </button>
+     <div class="titulo">
+       <h2>Crear torneo</h2>
+     </div>
+   </div>
+   <div class="contenido">
+  <form>
+    <div class="formulario">
+      <div class="campo">
+        <label for="nombre-torneo">Nombre de torneo:</label>
+        <textarea id="nombre-torneo" name="nombre-torneo"></textarea>
+      </div>
+      <div class="campo">
+        <label for="liga-torneo">Selecciona la liga correspondiente al torneo:</label>
+        <select id="liga-torneo" name="liga-torneo" onchange="handleLigaChange(this)">
+		<option value="" disabled selected>Por favor selecciona una liga</option>
+		<?php 
+			$sql = "SELECT * from reto_liga";
+			foreach ($pdo->query($sql) as $row) {
+				echo '<option value="'.$row["id"].'">'.$row["nombre"].'</option>';
+			}
+		?>
+          <!-- <option value="opcion1">Topos Femenil</option>
+          <option value="opcion2">Topos Varonil</option>
+          <option value="opcion3">Topitos F.C.</option> -->
+        </select>
+      </div>
+      <div class="campoEspe">
+        <h1>Selecciona los equipos (min 2)</h1>
+        <div class="containerSelect">
+          <div class="options">
+        </div>
+        <div class="boton-wrapper">
+          <button type="submit" class="guarda">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
 
 </body>
 
@@ -364,11 +577,9 @@ foreach ($pdo->query($sqltorn) as $row) {
             console.log(response);
 			var popop = `
 		<div class="top">
-			<div class="atras" onclick="atras()">
-				<button class="atras-button">
+				<button class="atras-button" onclick="atras()">
 					<img class="atras" src="https://static.vecteezy.com/system/resources/previews/000/589/654/non_2x/vector-back-icon.jpg" alt="Atrás">
 				</button>
-			</div>
 			<div class="titulo">
 				<h2>Añadir partido a ${response.nombre_torneo}</h2>
 			</div>
@@ -397,7 +608,7 @@ foreach ($pdo->query($sqltorn) as $row) {
                 <input type="time" id="hora" name="hora" required><br><br>
             </div>
             <div class="boton-wrapper">
-                <button type="submit">Guardar</button>
+                <button type="submit" class = "guarda">Guardar</button>
             </div>
         </form>
     </div>
@@ -415,8 +626,9 @@ foreach ($pdo->query($sqltorn) as $row) {
 
 	}
 	function atras() {
-		var aca = document.querySelector(".contenedor_pop");
-		aca.style.display = "none";
+		document.querySelector(".contenedor_pop").style.display = "none";
+		document.querySelector(".contenedorTorneo").style.display = "none";
+		
 		document.querySelector(".xdlol").style.display = "none";
 
 	}
@@ -431,7 +643,6 @@ foreach ($pdo->query($sqltorn) as $row) {
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // Set the request header for form data
         xhr.onreadystatechange = function() {
           if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            // Parse the JSON response
           }
         };
         xhr.send("torneo=" + encodeURIComponent(torneo)); // Send the data to the server
@@ -440,8 +651,83 @@ foreach ($pdo->query($sqltorn) as $row) {
 	}
 
 	document.querySelector(".masTorneo").addEventListener('click', function(){
-		alert("hola lol");
+		document.querySelector(".xdlol").style.display = "flex";
+		document.querySelector(".contenedorTorneo").style.display = "block";
 	});
+	
+	function handleLigaChange(liga) {
+    // Your onchange logic here
+    console.log('Liga seleccionada:', liga.value);
+	var xhr = new XMLHttpRequest();
+        xhr.open("POST", "liga_process.php", true); // Specify the request type and URL
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // Set the request header for form data
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            // Parse the JSON response
+			console.log(xhr.responseText);
+            var response = JSON.parse(xhr.responseText);
+			console.log(response);
+			var optionsContainer = document.querySelector(".options");
+			response.forEach(function(option, index) {
+
+				var optionDiv = document.createElement("div");
+				optionDiv.className = "option";
+
+				var checkbox = document.createElement("input");
+				checkbox.type = "checkbox";
+				checkbox.id = "option" + (option.id_equipo);
+				checkbox.name = "options";
+				checkbox.value = option.nombre; // Assuming the option object has a value property
+
+				var label = document.createElement("label");
+				label.htmlFor = "option" + option.id_equipo;
+				label.appendChild(document.createTextNode(option.nombre)); // Assuming the option object has a label property
+
+				optionDiv.appendChild(checkbox);
+				optionDiv.appendChild(label);
+
+				optionsContainer.appendChild(optionDiv);
+			});
+			
+			var counterDiv = document.createElement("div");
+			counterDiv.className = "counter";
+			counterDiv.innerHTML = "Seleccionados: <span id='selectedCount'>0</span>/8";
+			document.querySelector('.contenedorTorneo').appendChild(counterDiv);
+
+
+			const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+			const selectedCountElement = document.getElementById('selectedCount');
+			let selectedCount = 0;
+
+			checkboxes.forEach(checkbox => {
+				checkbox.addEventListener('change', () => {
+					if (checkbox.checked) {
+						selectedCount++;
+					} else {
+						selectedCount--;
+					}
+					selectedCountElement.textContent = selectedCount;
+
+					if (selectedCount >= 8) {
+						checkboxes.forEach(box => {
+							if (!box.checked) {
+								box.disabled = true;
+							}
+						});
+					} else {
+						checkboxes.forEach(box => {
+							box.disabled = false;
+						});
+					}
+				});
+			});
+          }
+        };
+	xhr.send("liga=" + encodeURIComponent(liga.value)); // Send the data to the server
+	
+  }
+
+  		
 </script>
 
 </html>
