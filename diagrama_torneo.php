@@ -289,15 +289,14 @@ h2, p {
  .contenedorTorneo {
   display: none;
   color: #0D3B66;
-  width: 800px;
+  width: 50%;
   height: auto;
   margin: 0 auto;
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 30px;
-  margin-top: 100px;
-  position: fixed ;
+  position: absolute ;
   justify-content: center;
 }
  
@@ -481,7 +480,7 @@ foreach ($pdo->query($sqltorn) as $row) {
 	
 		echo '
 		<div class="container">
-			<button class = "agregar" onclick = "reset('.$row["id_torneo"].')">Mandar todo alv</button>
+			<button class = "agregar" onclick = "reset('.$row["id_torneo"].')">Reset torneo</button>
 			<div class="header">
 				<h1 class="me">'.$row['nombre'].'</h1>
 			</div>
@@ -532,7 +531,7 @@ foreach ($pdo->query($sqltorn) as $row) {
     <div class="formulario">
       <div class="campo">
         <label for="nombre-torneo">Nombre de torneo:</label>
-        <textarea id="nombre-torneo" name="nombre-torneo"></textarea>
+        <textarea id="nombre-torneo" name="nombre-torneo" required></textarea>
       </div>
       <div class="campo">
         <label for="liga-torneo">Selecciona la liga correspondiente al torneo:</label>
@@ -552,8 +551,8 @@ foreach ($pdo->query($sqltorn) as $row) {
       <div class="campoEspe">
         <h1>Selecciona los equipos (min 2)</h1>
         <div class="containerSelect">
-          <div class="options">
-        </div>
+         	 <div class="options">
+        	</div>
         <div class="boton-wrapper">
           <button type="submit" class="guarda">Guardar</button>
         </div>
@@ -631,6 +630,9 @@ foreach ($pdo->query($sqltorn) as $row) {
 		
 		document.querySelector(".xdlol").style.display = "none";
 
+		document.querySelector(".options").innerHTML = '';
+		document.querySelector(".counter").innerHTML = '';
+
 	}
 	function validarNumeros(input) {
         // Reemplaza todo lo que no sea un número con una cadena vacía
@@ -656,6 +658,12 @@ foreach ($pdo->query($sqltorn) as $row) {
 	});
 	
 	function handleLigaChange(liga) {
+		if (document.querySelector(".counter")) {
+			
+			document.querySelector(".options").innerHTML = '';
+			document.querySelector(".counter").remove();
+		}
+
     // Your onchange logic here
     console.log('Liga seleccionada:', liga.value);
 	var xhr = new XMLHttpRequest();
