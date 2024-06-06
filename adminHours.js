@@ -99,6 +99,7 @@ function sendredId(id_reserva) {
             selectedSlot = slot; // Update the currently selected slot
             currentSlotId = parseInt(slot.id)
             sendId(parseInt(slot.id))
+            sendHours(currentSlotId)
             } else if (isOrangeSelected) { // Based on color, it deletes the "look" class if a selected orange is clicked
                 if (slot.classList.contains('look')) {
                     messageDiv.classList.add('ovisible');
@@ -116,7 +117,7 @@ function sendredId(id_reserva) {
                     selectedSlot.style.backgroundColor = 'rgb(255, 151, 105)'; // Set back to the default orange color
                 }
                 else if (selectedSlot.style.backgroundColor === 'rgb(142, 48, 48)') {
-                    slot.style.backgroundColor = 'rgb(253, 96, 96)'; // Set back to the default red color
+                    selectedSlot.style.backgroundColor = 'rgb(253, 96, 96)'; // Set back to the default red color
                 }
             }
             messageDiv.classList.add('ovisible');
@@ -134,6 +135,7 @@ function sendredId(id_reserva) {
                 selectedSlot = slot; // Update the currently selected slot
                 currentSlotId = parseInt(slot.id)
                 sendredId(parseInt(slot.id))
+                sendHours(currentSlotId)
             } else if (isRedSelected) { // Based on color, it deletes the "look" class if a selected red is clicked
                 if (slot.classList.contains('look')) {
                     messageDiv.classList.add('ovisible');

@@ -13,8 +13,6 @@ $pdo = Database::connect();
 $stmt = $pdo->prepare("UPDATE reto_reservaciones SET estado = 2 WHERE id_reserva = ?");
 $stmt->execute(array($id));
 Database::disconnect();
-// Return a JSON response indicating success (adjust as needed)
-// echo json_encode(['message' => 'Booking deleted successfully']);
 // Go back to main
 header("Location: main.php");
 ?>

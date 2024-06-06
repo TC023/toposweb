@@ -30,7 +30,7 @@ function nextStep() {
 
 // Función para ocultar la sección del calendario y mostrar el formulario de reserva
 function toggleFormDisplay() {
-  if (selectedHours[0] != null) {
+  if (selectedHours.length != 0) {
     nextStep();
     // Ocultar la sección del calendario
     var calendarSection = document.querySelector('.calendarcontainer');
@@ -65,7 +65,7 @@ function toggleStep3Display() {
   var userPhone = document.getElementById('phone').value;
   var userEmail = document.getElementById('email').value;
   if (userName == '' || isNaN(parseInt(userPhone)) || userEmail.indexOf('@') === -1 || userEmail.indexOf('.com') === -1) {
-
+    alert("Completa el formulario correctamente");
   }
   else {
   nextStep();

@@ -218,6 +218,11 @@ function createCalendar(year, month) {
           verDiv.classList.add('ovisible');
           messageDiv.classList.add('ovisible');
           sendInfo(currentDate, currentMonth, currentDayOfWeek);
+          selectedHours.length = 0;
+          const greenSlots = document.querySelectorAll('#time-slots li.selected');
+          greenSlots.forEach(slot => {
+            slot.classList.remove('selected');;
+          });
         });
       })(date, currentMonth, j);
       date++;
