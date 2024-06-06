@@ -6,8 +6,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST['id'];
     $torneo = $_POST['torneo'];
     $sql = "SELECT 
-    r1.nombre AS equipo1,
+     r1.nombre AS equipo1,
     r2.nombre AS equipo2,
+    r1.id_equipo AS id_e1,
+    r2.id_equipo AS id_e2,
     t1.numPartido,
     tr.nombre AS nombre_torneo
     FROM 

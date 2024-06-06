@@ -25,8 +25,10 @@
 			border-radius: 10px;
 			width: 900px;
 			margin-bottom: 20px;
+			margin-top: 20px;
 			padding: 20px;
 			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			position: relative;
 		}
 
 		.header {
@@ -61,9 +63,13 @@
 			box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 		}
 
-		.name {
+		.nameC {
 			font-size: 18px;
 			cursor: pointer;
+		}
+
+		.name {
+			font-size: 18px;
 		}
 
 		.back-button {
@@ -124,6 +130,10 @@
 			border: none;
 			border-radius: 5px;
 			cursor: pointer;
+			position: absolute;
+			top: 15%;
+			right: 5%;
+			transform: translateY(-50%);
 		}
 
 		.agregar:hover {
@@ -232,13 +242,12 @@ textarea {
 button {
  background-color: #3D92B6;
  color: white;
- width: 90px;
- height: 40px;
  font-size: 16px;
  margin-top: 15px;
  border: none;
  border-radius: 5px;
  cursor: pointer;
+ padding: 15px;
 }
 
 .xdlol {
@@ -256,6 +265,7 @@ button {
 </head>
 
 <body>
+	<button class="masTorneo">Añade un torneo :D</button>
 	<?php
 	require 'database.php'; 
 
@@ -300,10 +310,12 @@ foreach ($pdo->query($sqltorn) as $row) {
 	
 		echo '
 		<div class="container">
+			<button class = "agregar" onclick = "reset('.$row["id_torneo"].')">Mandar todo alv</button>
 			<div class="header">
 				<h1 class="me">'.$row['nombre'].'</h1>
 			</div>
 			<div class="bracket">
+
 				<img class="esquema" src="esquema.png">
 				<img src="trofeo.png" class="trofeo">
 				<div class="nombres">';
@@ -321,7 +333,7 @@ foreach ($pdo->query($sqltorn) as $row) {
 						echo '<div class="e'.$i.'"><div class="name-box"><label class="name">'.$result["nombre"].'</label></div></div>';
 					} else {
 						if ($fases[$i-9] !== "NULL") {
-							echo '<div class="e'.$i.'" onclick = "mostrar('.($i-8).', '.$row["id_torneo"].')"><div class="name-box" id = "clickable"><label class="name">'."Partido jugable".'</label></div></div>';
+							echo '<div class="e'.$i.'" onclick = "mostrar('.($i-8).', '.$row["id_torneo"].')"><div class="name-box" id = "clickable"><label class="nameC">'."Partido jugable".'</label></div></div>';
 						}
 						else {
 							echo '<div class="e'.$i.'"><div class="name-box"><label class="name">'."TBD".'</label></div></div>';
@@ -349,7 +361,7 @@ foreach ($pdo->query($sqltorn) as $row) {
           if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
             // Parse the JSON response
             var response = JSON.parse(xhr.responseText);
-            console.log(response.nombre_torneo);
+            console.log(response);
 			var popop = `
 		<div class="top">
 			<div class="atras" onclick="atras()">
@@ -363,8 +375,12 @@ foreach ($pdo->query($sqltorn) as $row) {
 		</div>
 		<div class="contenido">
     <div class="formulario">
-        <form id="formulario-partido" action="tu_url_de_procesamiento" method="POST">
-            <div class="campo">
+        <form id="formulario-partido" action="mandarTorneo.php" method="POST">
+		<input type="hidden" name="torneo" value = ${torneo}>
+		<input type="hidden" name="partido" value = ${id}>
+		<input type="hidden" name="equipo1" value = ${response.id_e1}>
+		<input type="hidden" name="equipo2" value = ${response.id_e2}>
+		<div class="campo">
                 <label for="goles-equipo1">Cantidad de goles de ${response.equipo1}:</label>
                 <textarea id="goles-equipo1" name="goles-equipo1" onkeyup="validarNumeros(this)" required></textarea>
             </div>
@@ -395,8 +411,8 @@ foreach ($pdo->query($sqltorn) as $row) {
           }
         };
         xhr.send("id=" + encodeURIComponent(id) + "&torneo=" + encodeURIComponent(torneo)); // Send the data to the server
-	document.querySelector(".xdlol").style.display = "block";
-		console.log("lmaooooo");
+		document.querySelector(".xdlol").style.display = "block";
+
 	}
 	function atras() {
 		var aca = document.querySelector(".contenedor_pop");
@@ -409,6 +425,24 @@ foreach ($pdo->query($sqltorn) as $row) {
         input.value = input.value.replace(/[^\d]/g, '');
     }
 
+	function reset(torneo) {
+		var xhr = new XMLHttpRequest();
+        xhr.open("POST", "reset_process.php", true); // Specify the request type and URL
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // Set the request header for form data
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            // Parse the JSON response
+          }
+        };
+        xhr.send("torneo=" + encodeURIComponent(torneo)); // Send the data to the server
+		location.reload();
+
+	}
+
+	document.querySelector(".masTorneo").addEventListener('click', function(){
+		alert("hola lol");
+	});
 </script>
 
 </html>
+
