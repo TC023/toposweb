@@ -118,9 +118,12 @@ body {
     line-height: 1.5;
     color: #333;
   }
+
+  /* Calendar section */
   .calendarcontainer {
     justify-content: center;
     width: 70%;
+    height: 86%;
     background-color: white;
     border-radius: 35px;
     display: flex;
@@ -132,12 +135,11 @@ body {
     align-items: flex-start; /* Align items to the top */
     margin-left: auto;
     margin-right: auto;
-    
   }
   .contentcalendar {
     display: flex;
     width: auto;
-    height: 520px;
+    height: 100%;
     padding: 0px;
   }
   .calendarheader {
@@ -149,9 +151,10 @@ body {
     height: 20px;
     width: 250px;
     flex: 1;
-    margin-right: 2px; /* Add space between the title and the calendar */
+    margin-right: 2px; /* Add space between the space and the calendar */
   }
   .calendar-section {
+    height: 100%;
     flex: 1;
     background-color: white;
     padding: 20px;
@@ -198,8 +201,8 @@ body {
   }
   .time-slots-section {
     flex: 1;
-    height: 520px;
-    width: 90px;
+    height: 100%;
+    width: 100%;
     background-color: white;
     padding: 10px;
     border-radius: 8px;
@@ -220,6 +223,9 @@ body {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-gap: 1px;
+}
+.calendar2 {
+  width: auto;
 }
 
 .day {
@@ -255,15 +261,17 @@ body {
 }
 
 ul#time-slots {
-    margin-left: 4px;
-    margin-top: 1px;
+  margin-left: 4px;
+  margin-top: 1px;
   list-style-type: none;
   padding: 0;
   margin-bottom: 1px;
+  height: 79%;
 }
 
 ul#time-slots li {
-    font-size: 0.95em;
+  width: 98%;
+  font-size: 0.95em;
   border-radius: 14px;
   padding: 10px;
   margin-bottom: 2px;
@@ -275,7 +283,7 @@ ul#time-slots li:hover {
   background-color: #e9ecef; /* Slightly darker gray on hover */
 }
 #select-button {
-  margin-left: 70px;
+  margin-left: 26%;
   background-color: black; 
   color: white;
   padding: 10px 20px;
@@ -406,10 +414,6 @@ background-color: #8abaed;
   padding: 20px 0;
   text-align: center;
 }
-  
-  .calendar2 {
-    width: auto;
-  }
 
 /* Steps Bar CSS */
 .steps-bar-container {
