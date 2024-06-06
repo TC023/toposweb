@@ -63,6 +63,7 @@
 
 		.name {
 			font-size: 18px;
+			cursor: pointer;
 		}
 
 		.back-button {
@@ -129,6 +130,11 @@
 			background-color: #0056b3;
 		}
 
+		#clickable:hover {
+			cursor: pointer;
+			background-color: #3fbd19;
+		}
+
 		.trofeo {
 			position: absolute;
 			top: -40px;
@@ -146,7 +152,7 @@ h2, p {
 }
 
 
-#contenedor_pop {
+.contenedor_pop {
  display: none;
  overflow: auto;
  position: fixed;
@@ -254,302 +260,154 @@ button {
 	require 'database.php'; 
 
 	$pdo = Database::connect();
-		
-	$sql = "SELECT 
-		t.id_torneo,
-		t.nombre AS nombre_torneo,
-		e1.nombre AS equipo1,
-		e2.nombre AS equipo2,
-		e3.nombre AS equipo3,
-		e4.nombre AS equipo4,
-		e5.nombre AS equipo5,
-		e6.nombre AS equipo6,
-		e7.nombre AS equipo7,
-		e8.nombre AS equipo8
-	FROM 
-		reto_torneo t
-	JOIN 
-		reto_equipos e1 ON t.e1 = e1.id_equipo
-	JOIN 
-		reto_equipos e2 ON t.e2 = e2.id_equipo
-	JOIN 
-		reto_equipos e3 ON t.e3 = e3.id_equipo
-	JOIN 
-		reto_equipos e4 ON t.e4 = e4.id_equipo
-	JOIN 
-		reto_equipos e5 ON t.e5 = e5.id_equipo
-	JOIN 
-		reto_equipos e6 ON t.e6 = e6.id_equipo
-	JOIN 
-		reto_equipos e7 ON t.e7 = e7.id_equipo
-	JOIN 
-		reto_equipos e8 ON t.e8 = e8.id_equipo;
-	";
-	foreach ($pdo->query($sql) as $row) {
-		$fases = array();
-
-		for ($i = 1; $i < 8; $i++) {
-			$quefases = "SELECT 
-			lol.nombre AS win
+	$sqltorn = "SELECT * FROM reto_torneo;";
+foreach ($pdo->query($sqltorn) as $row) {
+	$fases = [];
+	for ($i = 1; $i < 8; $i++) {
+		$sql = "SELECT 
+		r1.nombre AS equipo1,
+		r2.nombre AS equipo2,
+		t1.numPartido
 		FROM 
-			reto_partido_torneo pt
+		reto_fasesequipos t1
 		JOIN 
-			reto_equipos lol 
+		reto_fasesequipos t2
+		ON
+		t1.numPartido = t2.numPartido
+		AND t1.id_torneo = t2.id_torneo
+		AND t1.id_equipo < t2.id_equipo
+		JOIN 
+		reto_equipos r1
 		ON 
-			(pt.goles_e1 > pt.goles_e2 AND pt.equipo1 = lol.id_equipo) OR 
-			(pt.goles_e1 <= pt.goles_e2 AND pt.equipo2 = lol.id_equipo)
-		WHERE 
-			pt.id_torneo =". $row['id_torneo'] ."
-			AND pt.fase = ".$i.";";
-			$stmt = $pdo->query($quefases);
+		t1.id_equipo = r1.id_equipo
+		JOIN 
+		reto_equipos r2
+		ON 
+		t2.id_equipo = r2.id_equipo
+		WHERE t1.numPartido = ".$i."
+		AND t1.id_torneo = ".$row["id_torneo"].";
+		";
+			$stmt = $pdo->query($sql);
 			$result = $stmt->fetch(PDO::FETCH_ASSOC);
 		
 			if ($result) {
-				$fases[] = $result["win"];
+				$fases[] = [$result["equipo1"], $result["equipo2"]];
 			} else {
 				// Handle the case where there is no result, if necessary
-				$fases[] = 'TBD'; // or some default value
+				$fases[] = 'NULL'; // or some default value
 			}
 		}
+	
 		echo '
 		<div class="container">
 			<div class="header">
-				<h1 class="me">'.$row['nombre_torneo'].'</h1>
+				<h1 class="me">'.$row['nombre'].'</h1>
 			</div>
 			<div class="bracket">
 				<img class="esquema" src="esquema.png">
 				<img src="trofeo.png" class="trofeo">
-				<div class="nombres">
-					<div class="e1"><div class="name-box"><label class="name">'.$row["equipo1"].'</label></div></div>
-					<div class="e2"><div class="name-box"><label class="name">'.$row["equipo2"].'</label></div></div>
-					<div class="e3"><div class="name-box"><label class="name">'.$row["equipo3"].'</label></div></div>
-					<div class="e4"><div class="name-box"><label class="name">'.$row["equipo4"].'</label></div></div>
-					<div class="e5"><div class="name-box"><label class="name">'.$row["equipo5"].'</label></div></div>
-					<div class="e6"><div class="name-box"><label class="name">'.$row["equipo6"].'</label></div></div>
-					<div class="e7"><div class="name-box"><label class="name">'.$row["equipo7"].'</label></div></div>
-					<div class="e8"><div class="name-box"><label class="name">'.$row["equipo8"].'</label></div></div>
-					<div class="e9"><div class="name-box"><label class="name">'.$fases[0].'</label></div></div>
-					<div class="e10"><div class="name-box"><label class="name">'.$fases[1].'</label></div></div>
-					<div class="e11"><div class="name-box"><label class="name">'.$fases[2].'</label></div></div>
-					<div class="e12"><div class="name-box"><label class="name">'.$fases[3].'</label></div></div>
-					<div class="e13"><div class="name-box"><label class="name">'.$fases[4].'</label></div></div>
-					<div class="e14"><div class="name-box"><label class="name">'.$fases[5].'</label></div></div>
-					<div class="e15"><div class="name-box"><label class="name">'.$fases[6].'</label></div></div>
-				</div>
-			</div>
-			<div class="ab">
-				<button class="agregar" onclick="mostrar('.$row['id_torneo'].')">Agregar Partido</button>
+				<div class="nombres">';
+				for ($i = 1; $i < 16; $i++) {
+					$sqlAyuda = "SELECT e.nombre 
+					FROM reto_equipopos p
+					JOIN reto_equipos e ON p.id_equipo = e.id_equipo
+					WHERE p.id_torneo = ".$row["id_torneo"]."
+					AND p.posicion = ".$i.";
+					";
+					$stmt = $pdo->query($sqlAyuda);
+					$result = $stmt->fetch(PDO::FETCH_ASSOC);
+				
+					if ($result) {
+						echo '<div class="e'.$i.'"><div class="name-box"><label class="name">'.$result["nombre"].'</label></div></div>';
+					} else {
+						if ($fases[$i-9] !== "NULL") {
+							echo '<div class="e'.$i.'" onclick = "mostrar('.($i-8).', '.$row["id_torneo"].')"><div class="name-box" id = "clickable"><label class="name">'."Partido jugable".'</label></div></div>';
+						}
+						else {
+							echo '<div class="e'.$i.'"><div class="name-box"><label class="name">'."TBD".'</label></div></div>';
+						}
+					}
+				}
+				echo '</div>
 			</div>
 		</div>';
-		// ----------------------------DESEENME SUERTE NOMAMEN AYUDA----------------------------
 	}
-// POR CADA TORNEO, MUY IMPORTANTE, NO SE TE OLVIDE ALONSO POR EL AMOR DE DIOS:
-	foreach ($pdo->query($sql) as $row) {
-		$arrgh = [];
-		// POR CADA FASE A JUGAR:
-		for ($i = 1; $i < 4; $i++) {	
-			$sqlAyuda = "SELECT DISTINCT id_fase 
-			FROM reto_fasesequipo a 
-			WHERE id_fase = ".$i." 
-			  AND a.id_equipo NOT IN (SELECT id_equipo FROM reto_fasesequipo WHERE id_fase = ".($i+1).")
-			  AND (SELECT COUNT(subfase) FROM reto_fasesequipo WHERE id_fase = ".($i).") >= 2
-			  AND a.id_torneo = ".$row["id_torneo"].";
-			";
-			$stmt = $pdo->query($sqlAyuda);
-			$result = $stmt->fetch(PDO::FETCH_ASSOC);
-			if ($result) {
-				$arrgh[] = $result["id_fase"];
-				
-			}
+	?>
+	<div class="xdlol"></div> 
+	<div class="contenedor_pop"></div>
 
-			
-		}
-		$idtostr = [
-			1 => "Cuartos de final",
-			2 => "Semifinales",
-			3 => "Final",
-		];
-		echo '
-		<div class="xdlol"></div> 
-		<div id = "contenedor_pop" class="contenedor_pop'.$row["id_torneo"].'">
+
+</body>
+
+<script>
+	function mostrar(id, torneo) {
+
+		var xhr = new XMLHttpRequest();
+        xhr.open("POST", "diagrama_process.php", true); // Specify the request type and URL
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // Set the request header for form data
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            // Parse the JSON response
+            var response = JSON.parse(xhr.responseText);
+            console.log(response.nombre_torneo);
+			var popop = `
 		<div class="top">
-			<div class="atras" onclick="atras('.$row['id_torneo'].')">
+			<div class="atras" onclick="atras()">
 				<button class="atras-button">
 					<img class="atras" src="https://static.vecteezy.com/system/resources/previews/000/589/654/non_2x/vector-back-icon.jpg" alt="Atrás">
 				</button>
 			</div>
 			<div class="titulo">
-				<h2>Añadir partido a '.$row["nombre_torneo"].'</h2>
+				<h2>Añadir partido a ${response.nombre_torneo}</h2>
 			</div>
 		</div>
 		<div class="contenido">
-			<div class="formulario">
-				<div class="campo">
-					<label for="fase-torneo">Selecciona la fase:</label>
-						<select id="fase-torneo" name="fase-torneo">
-						<option value="" disabled selected>Selecciona una opción</option>
-						';
+    <div class="formulario">
+        <form id="formulario-partido" action="tu_url_de_procesamiento" method="POST">
+            <div class="campo">
+                <label for="goles-equipo1">Cantidad de goles de ${response.equipo1}:</label>
+                <textarea id="goles-equipo1" name="goles-equipo1" onkeyup="validarNumeros(this)" required></textarea>
+            </div>
+            <div class="campo">
+                <label for="goles-equipo2">Cantidad de goles de ${response.equipo2}:</label>
+                <textarea id="goles-equipo2" name="goles-equipo2" onkeyup="validarNumeros(this)" required></textarea>
+            </div>
+            <div class="campo">
+                <label for="fecha">Fecha del Partido:</label>
+                <input type="date" id="fecha" name="fecha" required><br><br>
+            </div>
+            <div class="campo">
+                <label for="hora">Hora del Partido:</label>
+                <input type="time" id="hora" name="hora" required><br><br>
+            </div>
+            <div class="boton-wrapper">
+                <button type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
 
-						$count = 0;
-						foreach ($arrgh as $opt) {
-							$count = $count+1;
-							echo '<option value="opcion'.$count.'">'.$idtostr[$opt].'</option>';
-						}
-						echo'
-						</select>
-				</div>
-				<div class="campo">
-					<label for="enfrentamiento-torneo">Selecciona el enfrentamiento:</label>
-						<select id="enfrentamiento-torneo" name="enfrentamiento-torneo">
-							<option value="" disabled selected>Selecciona una opción</option>
-							<!-- <option value="opcion1">Algo vs Algo1</option> -->
-						</select>
-				</div>
-				<div class="campo">
-					<label for="goles-equipo1">Cantidad de goles del equipo 1:</label>
-						<textarea id="goles-equipo1" name="goles-equipo1" onkeyup="validarNumeros(this)"></textarea>
-				</div>
-				<div class="campo">
-					<label for="goles-equipo2">Cantidad de goles del equipo 2:</label>
-						<textarea id="goles-equipo2" name="goles-equipo2" onkeyup="validarNumeros(this)"></textarea>
-				</div>
-				<div class="campo">
-					<label for="fecha">Selecciona la fecha:</label>
-					<input type="text" id="datepicker" name="fecha">
-				</div>
-				<div class="campo">
-					<label for="hora">Selecciona la hora:</label>
-						<select id="hora" name="hora">
-							<option value="" disabled selected>Selecciona una opción</option>
-							<option value="08:00">8:00 am</option>
-							<option value="09:00">9:00 am</option>
-							<option value="10:00">10:00 am</option>
-							<option value="11:00">11:00 am</option>
-							<option value="12:00">12:00 pm</option>
-							<option value="13:00">1:00 pm</option>
-							<option value="14:00">2:00 pm</option>
-							<option value="15:00">3:00 pm</option>
-							<option value="16:00">4:00 pm</option>
-							<option value="17:00">5:00 pm</option>
-							<option value="18:00">6:00 pm</option>
-							<option value="19:00">7:00 pm</option>
-							<option value="20:00">8:00 pm</option>
-							<option value="21:00">9:00 pm</option>
-						</select>
-				</div>
-				<div class="boton-wrapper">
-					<button type="submit">Guardar</button>
-				</div>
 			</div>
-		</div>
-	</div>
-		';
-	
+		</div>`; 
+		var aca = document.querySelector(".contenedor_pop");
+		aca.innerHTML = (popop)
+		aca.style.display = "block";
+          }
+        };
+        xhr.send("id=" + encodeURIComponent(id) + "&torneo=" + encodeURIComponent(torneo)); // Send the data to the server
+	document.querySelector(".xdlol").style.display = "block";
+		console.log("lmaooooo");
 	}
-	?>
-	 
-
-</body>
-
-<script>
-			var datepicker = document.getElementById('datepicker');
-			datepicker.disabled = true;
-
-			var faseTorneo = document.getElementById('fase-torneo');
-			var enfrentamientoTorneo = document.getElementById('enfrentamiento-torneo');
-			var golesEquipo1 = document.getElementById('goles-equipo1');
-			var golesEquipo2 = document.getElementById('goles-equipo2');
-			var fecha = document.getElementById('datepicker');
-			var hora = document.getElementById('hora');
-
-			enfrentamientoTorneo.disabled = true;
-			golesEquipo1.disabled = true;
-			golesEquipo2.disabled = true;
-			fecha.disabled = true;
-			hora.disabled = true;
-
-			function resetFields(...fields) {
-				fields.forEach(field => {
-					field.value = '';
-					if (field.name != "enfrentamiento-torneo") {
-						field.disabled = true;
-					}
-				});
-			}
-
-			faseTorneo.addEventListener('change', function() {
-				if (faseTorneo.value) {
-					enfrentamientoTorneo.disabled = false;
-					resetFields(enfrentamientoTorneo, golesEquipo1, golesEquipo2, fecha, hora);
-				} else {
-				}
-			});
-
-			enfrentamientoTorneo.addEventListener('change', function() {
-				
-					resetFields(golesEquipo1, golesEquipo2, fecha, hora);
-					golesEquipo1.disabled = false;
-				
-			});
-
-			golesEquipo1.addEventListener('keyup', function() {
-				if (golesEquipo1.value) {
-					resetFields(golesEquipo2, fecha, hora);
-					golesEquipo2.disabled = false;
-				} else {
-					resetFields(golesEquipo2, fecha, hora);
-				}
-			});
-
-			golesEquipo2.addEventListener('keyup', function() {
-				if (golesEquipo2.value) {
-					resetFields(fecha, hora);
-					fecha.disabled = false;
-				} else {
-					resetFields(fecha, hora);
-				}
-			});
-
-			fecha.addEventListener('change', function() {
-				if (fecha.value) {
-					resetFields(hora);
-					hora.disabled = false;
-				} else {
-					resetFields(hora);
-				}
-			});
-
-			window.validarNumeros = function(elemento) {
-				var valor = elemento.value;
-				if (!/^\d*$/.test(valor)) {
-					elemento.value = valor.replace(/[^\d]/g, '');
-				}
-			};
-
-		function mostrar(id) {
-		document.querySelector('.contenedor_pop'+id).style.display = 'block';
-		document.querySelector('.xdlol').style.display = 'block';
-		console.log("huh");
-
+	function atras() {
+		var aca = document.querySelector(".contenedor_pop");
+		aca.style.display = "none";
+		document.querySelector(".xdlol").style.display = "none";
 
 	}
-		
-		function atras(id) {
-			console.log("hola?");
-			const fields = [faseTorneo, enfrentamientoTorneo, golesEquipo1, golesEquipo2, fecha, hora];
-			fields.forEach(field => {
-							field.value = '';
-							if (field.name != "fase-torneo") {
-								field.disabled = true;
-							}
-						});
-			document.querySelector('.contenedor_pop'+id).style.display = 'none';
-			document.querySelector('.xdlol').style.display = 'none';
-			<?php
-			$arrgh = [];
-			?>
-		}
-
+	function validarNumeros(input) {
+        // Reemplaza todo lo que no sea un número con una cadena vacía
+        input.value = input.value.replace(/[^\d]/g, '');
+    }
 
 </script>
 
