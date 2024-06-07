@@ -33,7 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ON
     t1.id_torneo = tr.id_torneo
     WHERE t1.numPartido = ".$id."
-    AND t1.id_torneo = ".$torneo.";";
+    AND t1.id_torneo = ".$torneo.";
+    ";
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute();

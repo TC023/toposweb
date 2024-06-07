@@ -502,12 +502,18 @@ foreach ($pdo->query($sqltorn) as $row) {
 					if ($result) {
 						echo '<div class="e'.$i.'"><div class="name-box"><label class="name">'.$result["nombre"].'</label></div></div>';
 					} else {
-						if ($fases[$i-9] !== "NULL") {
-							echo '<div class="e'.$i.'" onclick = "mostrar('.($i-8).', '.$row["id_torneo"].')"><div class="name-box" id = "clickable"><label class="nameC">'."Partido jugable".'</label></div></div>';
+						if ($i < 9){
+							echo '<div class="e'.$i.'"><div class="name-box"><label class="name">'."-".'</label></div></div>';
+						}else {
+							if ($fases[$i-9] !== "NULL") {
+								echo '<div class="e'.$i.'" onclick = "mostrar('.($i-8).', '.$row["id_torneo"].')"><div class="name-box" id = "clickable"><label class="nameC">'."Partido jugable".'</label></div></div>';
+							}
+							else {
+								echo '<script>console.log('.$i.','.$row["id_torneo"].',"'.$fases[$i-9].'")</script>';
+								echo '<div class="e'.$i.'"><div class="name-box"><label class="name">'."TBD".'</label></div></div>';
+							}
 						}
-						else {
-							echo '<div class="e'.$i.'"><div class="name-box"><label class="name">'."TBD".'</label></div></div>';
-						}
+						
 					}
 				}
 				echo '</div>
@@ -527,7 +533,7 @@ foreach ($pdo->query($sqltorn) as $row) {
      </div>
    </div>
    <div class="contenido">
-  <form>
+  <form id="formTorneo" action="agregaTorneo.php" method="POST">
     <div class="formulario">
       <div class="campo">
         <label for="nombre-torneo">Nombre de torneo:</label>
@@ -535,7 +541,7 @@ foreach ($pdo->query($sqltorn) as $row) {
       </div>
       <div class="campo">
         <label for="liga-torneo">Selecciona la liga correspondiente al torneo:</label>
-        <select id="liga-torneo" name="liga-torneo" onchange="handleLigaChange(this)">
+        <select id="liga-torneo" name="liga-torneo" onchange="handleLigaChange(this)" required>
 		<option value="" disabled selected>Por favor selecciona una liga</option>
 		<?php 
 			$sql = "SELECT * from reto_liga";
@@ -554,7 +560,7 @@ foreach ($pdo->query($sqltorn) as $row) {
          	 <div class="options">
         	</div>
         <div class="boton-wrapper">
-          <button type="submit" class="guarda">Guardar</button>
+          <button type="button" onclick="getFormData()" class="guarda">Guardar</button>
         </div>
       </div>
     </div>
@@ -573,7 +579,6 @@ foreach ($pdo->query($sqltorn) as $row) {
           if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
             // Parse the JSON response
             var response = JSON.parse(xhr.responseText);
-            console.log(response);
 			var popop = `
 		<div class="top">
 				<button class="atras-button" onclick="atras()">
@@ -618,20 +623,27 @@ foreach ($pdo->query($sqltorn) as $row) {
 		var aca = document.querySelector(".contenedor_pop");
 		aca.innerHTML = (popop)
 		aca.style.display = "block";
-          }
+        }
         };
         xhr.send("id=" + encodeURIComponent(id) + "&torneo=" + encodeURIComponent(torneo)); // Send the data to the server
 		document.querySelector(".xdlol").style.display = "block";
 
 	}
 	function atras() {
+		document.querySelector("#nombre-torneo").value = '';
+		document.querySelector("#liga-torneo").value = '';
+		
 		document.querySelector(".contenedor_pop").style.display = "none";
 		document.querySelector(".contenedorTorneo").style.display = "none";
 		
 		document.querySelector(".xdlol").style.display = "none";
 
-		document.querySelector(".options").innerHTML = '';
-		document.querySelector(".counter").innerHTML = '';
+		if (document.querySelector(".counter")) {
+			
+			document.querySelector(".options").innerHTML = '';
+			document.querySelector(".counter").remove();
+		}
+
 
 	}
 	function validarNumeros(input) {
@@ -665,16 +677,13 @@ foreach ($pdo->query($sqltorn) as $row) {
 		}
 
     // Your onchange logic here
-    console.log('Liga seleccionada:', liga.value);
 	var xhr = new XMLHttpRequest();
         xhr.open("POST", "liga_process.php", true); // Specify the request type and URL
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // Set the request header for form data
         xhr.onreadystatechange = function() {
           if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
             // Parse the JSON response
-			console.log(xhr.responseText);
             var response = JSON.parse(xhr.responseText);
-			console.log(response);
 			var optionsContainer = document.querySelector(".options");
 			response.forEach(function(option, index) {
 
@@ -684,8 +693,8 @@ foreach ($pdo->query($sqltorn) as $row) {
 				var checkbox = document.createElement("input");
 				checkbox.type = "checkbox";
 				checkbox.id = "option" + (option.id_equipo);
-				checkbox.name = "options";
-				checkbox.value = option.nombre; // Assuming the option object has a value property
+				checkbox.name = "options[]";
+				checkbox.value = option.id_equipo; // Assuming the option object has a value property
 
 				var label = document.createElement("label");
 				label.htmlFor = "option" + option.id_equipo;
@@ -735,8 +744,19 @@ foreach ($pdo->query($sqltorn) as $row) {
 	
   }
 
-  		
-</script>
+function getFormData() {
+	if (document.getElementById('selectedCount')) {
+		const selectedCountElement = document.getElementById('selectedCount').textContent;
+		console.log(selectedCountElement);
+		if (selectedCountElement < 2) {
+			alert("ESTÁ MAL, NO, IMPOSIBLE");
+		}else{
+			document.querySelector("#formTorneo").submit();
+		}
+	}
+}
+
+  </script>
 
 </html>
 
